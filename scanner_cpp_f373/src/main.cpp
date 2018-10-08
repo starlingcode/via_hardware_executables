@@ -140,6 +140,8 @@ int main(void)
   MX_DAC2_Init();
   /* USER CODE BEGIN 2 */
 
+  HAL_FLASH_Unlock();
+
   ViaScanner module;
   ViaScanner * moduleAddress = &module;
   linkInterrupts(moduleAddress);

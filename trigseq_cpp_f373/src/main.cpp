@@ -140,6 +140,9 @@ int main(void)
   MX_DAC2_Init();
   /* USER CODE BEGIN 2 */
 
+  HAL_FLASH_Unlock();
+
+
   ViaTrigseq module;
   ViaTrigseq * moduleAddress = &module;
   linkInterrupts(moduleAddress);

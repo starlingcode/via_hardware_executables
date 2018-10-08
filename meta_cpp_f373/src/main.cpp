@@ -64,6 +64,12 @@
 
 #include "meta.hpp"
 
+extern "C" {
+
+#include "eeprom.h"
+
+}
+
 extern void mainHardwareInit(void);
 
 extern void linkInterrupts(ViaMeta *);
@@ -139,6 +145,8 @@ int main(void)
   MX_DAC1_Init();
   MX_DAC2_Init();
   /* USER CODE BEGIN 2 */
+
+  HAL_FLASH_Unlock();
 
   ViaMeta module;
   ViaMeta * moduleAddress = &module;
