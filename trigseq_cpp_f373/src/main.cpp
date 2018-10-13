@@ -62,11 +62,11 @@
 
 #define BUILD_F373_REV6
 
-#include "trigseq.hpp"
+#include "gateseq.hpp"
 
 extern void mainHardwareInit(void);
 
-extern void linkInterrupts(ViaTrigseq *);
+extern void linkInterrupts(ViaGateseq *);
 
 /* USER CODE END Includes */
 
@@ -143,8 +143,8 @@ int main(void)
   HAL_FLASH_Unlock();
 
 
-  ViaTrigseq module;
-  ViaTrigseq * moduleAddress = &module;
+  ViaGateseq module;
+  ViaGateseq * moduleAddress = &module;
   linkInterrupts(moduleAddress);
   mainHardwareInit();
   module.ioStreamInit();
