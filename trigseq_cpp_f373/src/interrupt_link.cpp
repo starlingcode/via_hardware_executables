@@ -24,6 +24,9 @@ void linkInterrupts(ViaGateseq * voidPointer) {
 	dacTimerCallback = &dacTimerHandler;
 	sdaadcConversionCompleteCallback = &sdaadcConversionCompleteHandler;
 	adcConversionCompleteCallback = &adcConversionCompleteHandler;
+	auxTimer1InterruptCallback = &auxTimer1InterruptHandler;
+	auxTimer2InterruptCallback = &auxTimer2InterruptHandler;
+
 
 }
 
@@ -92,5 +95,17 @@ void dacTimerHandler(void *) {
 }
 void sdaadcConversionCompleteHandler(void *) {
 	;
+}
+void auxTimer1InterruptHandler(void * voidPointer) {
+
+	ViaGateseq * modulePointer = (ViaGateseq *) voidPointer;
+	modulePointer->auxTimer1InterruptCallback();
+
+}
+void auxTimer2InterruptHandler(void * voidPointer) {
+
+	ViaGateseq * modulePointer = (ViaGateseq *) voidPointer;
+	modulePointer->auxTimer2InterruptCallback();
+
 }
 

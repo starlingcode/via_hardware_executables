@@ -11,6 +11,7 @@ int triggerDebounce;
 extern "C" {
 #endif
 
+extern TIM_HandleTypeDef htim2;
 extern TIM_HandleTypeDef htim6;
 extern TIM_HandleTypeDef htim7;
 extern TIM_HandleTypeDef htim12;
@@ -103,12 +104,18 @@ void TIM16_IRQHandler(void)
 void TIM17_IRQHandler(void)
 {
 
-//	SH_B_SAMPLE;
-//	if (RUNTIME_DISPLAY) {
-//		LEDB_ON;
-//	}
+	(*auxTimer2InterruptCallback)(modulePointer);
+
 	__HAL_TIM_CLEAR_FLAG(&htim17, TIM_FLAG_UPDATE);
-	__HAL_TIM_DISABLE(&htim17);
+
+}
+
+void TIM2_IRQHandler(void)
+{
+
+	(*auxTimer1InterruptCallback)(modulePointer);
+
+	__HAL_TIM_CLEAR_FLAG(&htim2, TIM_FLAG_UPDATE);
 
 }
 
