@@ -25,7 +25,7 @@ void mainHardwareInit(void) {
 	HAL_TIM_Base_Start(&htim4);
 	HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_4);
 	TIM5->ARR = 4294967295;
-	TIM5->PSC = 1;
+	TIM5->PSC = 0;
 	TIM5->EGR = TIM_EGR_UG;
 	TIM5->CR1 |= TIM_CR1_CEN;
 	//HAL_TIM_PWM_Start(&htim5, TIM_CHANNEL_1);
