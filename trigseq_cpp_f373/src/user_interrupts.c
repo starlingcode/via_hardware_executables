@@ -18,6 +18,8 @@ extern TIM_HandleTypeDef htim12;
 extern TIM_HandleTypeDef htim13;
 extern TIM_HandleTypeDef htim16;
 extern TIM_HandleTypeDef htim17;
+extern TIM_HandleTypeDef htim18;
+
 
 
 /*
@@ -110,6 +112,16 @@ void TIM17_IRQHandler(void)
 
 }
 
+void TIM18_DAC2_IRQHandler(void)
+{
+
+
+	(*auxTimer3InterruptCallback)(modulePointer);
+
+	__HAL_TIM_CLEAR_FLAG(&htim18, TIM_FLAG_UPDATE);
+
+}
+
 void TIM2_IRQHandler(void)
 {
 
@@ -139,7 +151,7 @@ void TIM7_IRQHandler(void)
 
 	(*uiTimerCallback)(modulePointer);
 
-	HAL_TIM_IRQHandler(&htim7);
+	__HAL_TIM_CLEAR_FLAG(&htim7, TIM_FLAG_UPDATE);
 
 }
 

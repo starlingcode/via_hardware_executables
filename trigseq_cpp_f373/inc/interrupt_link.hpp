@@ -29,6 +29,7 @@ void (*dacTimerCallback)(void*);
 void (*sdaadcConversionCompleteCallback)(void*);
 void (*auxTimer1InterruptCallback)(void*);
 void (*auxTimer2InterruptCallback)(void*);
+void (*auxTimer3InterruptCallback)(void*);
 
 
 #ifdef __cplusplus
@@ -50,6 +51,8 @@ void dacTimerHandler(void *);
 void sdaadcConversionCompleteHandler(void *);
 void auxTimer1InterruptHandler(void *);
 void auxTimer2InterruptHandler(void *);
+void auxTimer3InterruptHandler(void *);
+
 
 
 #endif /* INTERRUPT_LINK_HPP_ */

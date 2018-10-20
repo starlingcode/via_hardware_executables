@@ -26,7 +26,7 @@ void linkInterrupts(ViaGateseq * voidPointer) {
 	adcConversionCompleteCallback = &adcConversionCompleteHandler;
 	auxTimer1InterruptCallback = &auxTimer1InterruptHandler;
 	auxTimer2InterruptCallback = &auxTimer2InterruptHandler;
-
+	auxTimer3InterruptCallback = &auxTimer3InterruptHandler;
 
 }
 
@@ -106,6 +106,12 @@ void auxTimer2InterruptHandler(void * voidPointer) {
 
 	ViaGateseq * modulePointer = (ViaGateseq *) voidPointer;
 	modulePointer->auxTimer2InterruptCallback();
+
+}
+void auxTimer3InterruptHandler(void * voidPointer) {
+
+	ViaGateseq * modulePointer = (ViaGateseq *) voidPointer;
+	modulePointer->auxTimer3InterruptCallback();
 
 }
 

@@ -33,8 +33,10 @@ void mainHardwareInit(void) {
 	// set the priority and enable an interrupt line to be used by the trigger button input and aux trigger
 	HAL_NVIC_SetPriority(EXTI1_IRQn, 3, 0);
 	HAL_NVIC_EnableIRQ(EXTI1_IRQn);
-	HAL_NVIC_SetPriority(EXTI15_10_IRQn, 1, 0);
+	HAL_NVIC_SetPriority(EXTI15_10_IRQn, 0, 1);
 	HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
+
+
 
 	// set the dac sample rate and start the dac timer
 	TIM6->ARR = 1023;
@@ -59,7 +61,7 @@ void mainHardwareInit(void) {
 	// initialize the shB timer
 	TIM17->PSC = 4095;
 	__HAL_TIM_ENABLE_IT(&htim17, TIM_IT_UPDATE);
-//	TIM17->CR1 |= TIM_CR1_CEN;
+	__HAL_TIM_ENABLE_IT(&htim18, TIM_IT_UPDATE);
 
 }
 
