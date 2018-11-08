@@ -96,6 +96,10 @@ void TIM16_IRQHandler(void)
 
 	triggerDebounce = 0;
 
+	if (!EXPANDER_BUTTON_PRESSED) {
+		(*buttonReleasedCallback)(modulePointer);
+	}
+
 	__HAL_TIM_CLEAR_FLAG(&htim16, TIM_FLAG_UPDATE);
 	__HAL_TIM_DISABLE(&htim16);
 

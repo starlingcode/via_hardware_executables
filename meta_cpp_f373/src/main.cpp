@@ -155,6 +155,9 @@ int main(void)
   module.ioStreamInit();
 
   module.setSH(0, 0);
+  module.setLEDD(module.metaUI.aux4Mode);
+  module.outputStage = &ViaMeta::oversample;
+
 
   /* USER CODE END 2 */
 

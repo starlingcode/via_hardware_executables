@@ -24,6 +24,8 @@ void linkInterrupts(ViaMeta * voidPointer) {
 	dacTimerCallback = &dacTimerHandler;
 	sdaadcConversionCompleteCallback = &sdaadcConversionCompleteHandler;
 	adcConversionCompleteCallback = &adcConversionCompleteHandler;
+	auxTimer1InterruptCallback = &auxTimer1InterruptHandler;
+	auxTimer2InterruptCallback = &auxTimer2InterruptHandler;
 
 }
 
@@ -94,3 +96,16 @@ void sdaadcConversionCompleteHandler(void *) {
 	;
 }
 
+void auxTimer1InterruptHandler(void * voidPointer) {
+
+	ViaMeta * modulePointer = (ViaMeta *) voidPointer;
+	modulePointer->auxTimer1InterruptCallback();
+
+}
+
+void auxTimer2InterruptHandler(void * voidPointer) {
+
+	ViaMeta * modulePointer = (ViaMeta *) voidPointer;
+	modulePointer->auxTimer2InterruptCallback();
+
+}

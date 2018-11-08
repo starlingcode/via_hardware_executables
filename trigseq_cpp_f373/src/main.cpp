@@ -147,6 +147,9 @@ int main(void)
   ViaGateseq * moduleAddress = &module;
   linkInterrupts(moduleAddress);
   mainHardwareInit();
+  if (module.gateseqUI.button3Mode == 0) {
+	  TIM2->CR1 &= ~TIM_CR1_CEN;
+  }
   module.ioStreamInit();
 
 

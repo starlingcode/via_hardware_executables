@@ -60,6 +60,7 @@ void mainHardwareInit(void) {
 	__HAL_TIM_ENABLE_IT(&htim16, TIM_IT_UPDATE);
 	// initialize the shB timer
 	TIM17->PSC = 4095;
+	TIM5->EGR = TIM_EGR_UG;
 	__HAL_TIM_ENABLE_IT(&htim17, TIM_IT_UPDATE);
 	__HAL_TIM_ENABLE_IT(&htim18, TIM_IT_UPDATE);
 
