@@ -4,6 +4,9 @@
 #include "interrupt_link.hpp"
 #include "f373_rev6_io.hpp"
 
+#define LOGICA_HIGH GPIOC->BRR = (uint32_t)GPIO_PIN_13;
+#define LOGICA_LOW GPIOC->BSRR = (uint32_t)GPIO_PIN_13;
+
 
 int triggerDebounce;
 
@@ -93,6 +96,10 @@ void TIM16_IRQHandler(void)
 
 	triggerDebounce = 0;
 
+	if (!EXPANDER_BUTTON_PRESSED) {
+		(*buttonReleasedCallback)(modulePointer);
+	}
+
 	__HAL_TIM_CLEAR_FLAG(&htim16, TIM_FLAG_UPDATE);
 	__HAL_TIM_DISABLE(&htim16);
 
@@ -158,9 +165,11 @@ void DMA1_Channel1_IRQHandler(void)
 
 }
 
+
+
 void DMA1_Channel5_IRQHandler(void)
 {
-
+	//LOGICA_HIGH
 
 	if ((DMA1->ISR & (DMA_FLAG_HT1 << 16)) != 0) {
 		DMA1->IFCR = DMA_FLAG_HT1 << 16;
@@ -169,6 +178,8 @@ void DMA1_Channel5_IRQHandler(void)
 		DMA1->IFCR = DMA_FLAG_TC1 << 16;
 		(*dacTransferCompleteCallback)(modulePointer);
 	}
+
+	//LOGICA_LOW
 
 }
 

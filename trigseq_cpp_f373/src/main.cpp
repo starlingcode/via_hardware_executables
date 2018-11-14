@@ -62,11 +62,11 @@
 
 #define BUILD_F373_REV6
 
-#include "trigseq.hpp"
+#include "gateseq.hpp"
 
 extern void mainHardwareInit(void);
 
-extern void linkInterrupts(ViaTrigseq *);
+extern void linkInterrupts(ViaGateseq *);
 
 /* USER CODE END Includes */
 
@@ -126,7 +126,7 @@ int main(void)
   MX_TIM2_Init();
   MX_TIM3_Init();
   MX_TIM4_Init();
-  MX_TIM5_Init();
+  MX_TIM5_Init_Gateseq();
   MX_TIM12_Init();
   MX_TIM13_Init();
   MX_TIM16_Init();
@@ -143,10 +143,13 @@ int main(void)
   HAL_FLASH_Unlock();
 
 
-  ViaTrigseq module;
-  ViaTrigseq * moduleAddress = &module;
+  ViaGateseq module;
+  ViaGateseq * moduleAddress = &module;
   linkInterrupts(moduleAddress);
   mainHardwareInit();
+  if (module.gateseqUI.button3Mode == 0) {
+	  TIM2->CR1 &= ~TIM_CR1_CEN;
+  }
   module.ioStreamInit();
 
 

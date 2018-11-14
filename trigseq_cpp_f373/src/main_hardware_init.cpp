@@ -24,14 +24,19 @@ void mainHardwareInit(void) {
 	HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_2);
 	HAL_TIM_Base_Start(&htim4);
 	HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_4);
-	HAL_TIM_Base_Start(&htim5);
-	HAL_TIM_PWM_Start(&htim5, TIM_CHANNEL_1);
+	TIM5->ARR = 4294967295;
+	TIM5->PSC = 0;
+	TIM5->EGR = TIM_EGR_UG;
+	TIM5->CR1 |= TIM_CR1_CEN;
+	//HAL_TIM_PWM_Start(&htim5, TIM_CHANNEL_1);
 
 	// set the priority and enable an interrupt line to be used by the trigger button input and aux trigger
 	HAL_NVIC_SetPriority(EXTI1_IRQn, 3, 0);
 	HAL_NVIC_EnableIRQ(EXTI1_IRQn);
-	HAL_NVIC_SetPriority(EXTI15_10_IRQn, 1, 0);
+	HAL_NVIC_SetPriority(EXTI15_10_IRQn, 0, 1);
 	HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
+
+
 
 	// set the dac sample rate and start the dac timer
 	TIM6->ARR = 1023;
@@ -39,6 +44,12 @@ void mainHardwareInit(void) {
 
 	 //initialize the timer that is used to detect rising and falling edges at the trigger input
 	HAL_TIM_IC_Start_IT(&htim12, TIM_CHANNEL_2);
+	TIM2->PSC = 0;
+	__HAL_TIM_ENABLE_IT(&htim2, TIM_IT_UPDATE);
+	TIM2->ARR = 1000000;
+	TIM2->CR1 |= TIM_CR1_CEN;
+
+
 
 	//initialize the touch sensor time base
 	HAL_TIM_Base_Start_IT(&htim13);
@@ -48,7 +59,10 @@ void mainHardwareInit(void) {
 	// initialize the shA timer
 	__HAL_TIM_ENABLE_IT(&htim16, TIM_IT_UPDATE);
 	// initialize the shB timer
+	TIM17->PSC = 4095;
+	TIM5->EGR = TIM_EGR_UG;
 	__HAL_TIM_ENABLE_IT(&htim17, TIM_IT_UPDATE);
+	__HAL_TIM_ENABLE_IT(&htim18, TIM_IT_UPDATE);
 
 }
 

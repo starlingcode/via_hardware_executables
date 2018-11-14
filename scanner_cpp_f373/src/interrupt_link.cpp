@@ -22,10 +22,10 @@ void linkInterrupts(ViaScanner * voidPointer) {
 	dacHalfTransferCallback = &dacHalfTransferHandler;
 	dacTransferCompleteCallback = &dacTransferCompleteHandler;
 	dacTimerCallback = &dacTimerHandler;
-	cv2HalfTransferCallback = &cv2HalfTransferHandler;
-	cv2TransferCompleteCallback = &cv2TransferCompleteHandler;
-	cv3HalfTransferCallback = &cv3HalfTransferHandler;
-	cv3TransferCompleteCallback = &cv3TransferCompleteHandler;
+//	cv2HalfTransferCallback = &cv2HalfTransferHandler;
+//	cv2TransferCompleteCallback = &cv2TransferCompleteHandler;
+//	cv3HalfTransferCallback = &cv3HalfTransferHandler;
+//	cv3TransferCompleteCallback = &cv3TransferCompleteHandler;
 	adcConversionCompleteCallback = &adcConversionCompleteHandler;
 
 }
@@ -94,20 +94,20 @@ void dacTimerHandler(void * voidPointer) {
 	ViaScanner * modulePointer = (ViaScanner *) voidPointer;
 	modulePointer->ioProcessCallback();
 }
-void cv2HalfTransferHandler(void * voidPointer) {
-	ViaScanner * modulePointer = (ViaScanner *) voidPointer;
-	modulePointer->cv2HalfTransferCallback();
-}
-void cv2TransferCompleteHandler(void * voidPointer) {
-	ViaScanner * modulePointer = (ViaScanner *) voidPointer;
-	modulePointer->cv2TransferCompleteCallback();
-}
-void cv3HalfTransferHandler(void * voidPointer) {
-	ViaScanner * modulePointer = (ViaScanner *) voidPointer;
-	modulePointer->cv3HalfTransferCallback();
-}
-void cv3TransferCompleteHandler(void * voidPointer) {
-	ViaScanner * modulePointer = (ViaScanner *) voidPointer;
-	modulePointer->cv3TransferCompleteCallback();
-}
+//void cv2HalfTransferHandler(void * voidPointer) {
+//	ViaScanner * modulePointer = (ViaScanner *) voidPointer;
+//	modulePointer->cv2HalfTransferCallback();
+//}
+//void cv2TransferCompleteHandler(void * voidPointer) {
+//	ViaScanner * modulePointer = (ViaScanner *) voidPointer;
+//	modulePointer->cv2TransferCompleteCallback();
+//}
+//void cv3HalfTransferHandler(void * voidPointer) {
+//	ViaScanner * modulePointer = (ViaScanner *) voidPointer;
+//	modulePointer->cv3HalfTransferCallback();
+//}
+//void cv3TransferCompleteHandler(void * voidPointer) {
+//	ViaScanner * modulePointer = (ViaScanner *) voidPointer;
+//	modulePointer->cv3TransferCompleteCallback();
+//}
 

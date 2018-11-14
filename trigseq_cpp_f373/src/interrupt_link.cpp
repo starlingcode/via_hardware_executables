@@ -6,9 +6,9 @@
  */
 
 #include "interrupt_link.hpp"
-#include "trigseq.hpp"
+#include "gateseq.hpp"
 
-void linkInterrupts(ViaTrigseq * voidPointer) {
+void linkInterrupts(ViaGateseq * voidPointer) {
 
 	modulePointer = (void *) voidPointer;
 
@@ -24,66 +24,69 @@ void linkInterrupts(ViaTrigseq * voidPointer) {
 	dacTimerCallback = &dacTimerHandler;
 	sdaadcConversionCompleteCallback = &sdaadcConversionCompleteHandler;
 	adcConversionCompleteCallback = &adcConversionCompleteHandler;
+	auxTimer1InterruptCallback = &auxTimer1InterruptHandler;
+	auxTimer2InterruptCallback = &auxTimer2InterruptHandler;
+	auxTimer3InterruptCallback = &auxTimer3InterruptHandler;
 
 }
 
 void uiTimerHandler(void * voidPointer) {
 
-	ViaTrigseq * thisModule = (ViaTrigseq *) voidPointer;
+	ViaGateseq * thisModule = (ViaGateseq *) voidPointer;
 	thisModule->ui_dispatch(TIMEOUT_SIG);
 
 }
 void mainRisingEdgeHandler(void * voidPointer) {
 
-	ViaTrigseq * modulePointer = (ViaTrigseq *) voidPointer;
+	ViaGateseq * modulePointer = (ViaGateseq *) voidPointer;
 	modulePointer->mainRisingEdgeCallback();
 
 }
 void mainFallingEdgeHandler(void * voidPointer) {
 
-	ViaTrigseq * modulePointer = (ViaTrigseq *) voidPointer;
+	ViaGateseq * modulePointer = (ViaGateseq *) voidPointer;
 	modulePointer->mainFallingEdgeCallback();
 
 }
 void auxRisingEdgeHandler(void * voidPointer) {
 
-	ViaTrigseq * modulePointer = (ViaTrigseq *) voidPointer;
+	ViaGateseq * modulePointer = (ViaGateseq *) voidPointer;
 	modulePointer->auxRisingEdgeCallback();
 
 }
 void auxFallingEdgeHandler(void * voidPointer) {
 
-	ViaTrigseq * modulePointer = (ViaTrigseq *) voidPointer;
+	ViaGateseq * modulePointer = (ViaGateseq *) voidPointer;
 	modulePointer->auxFallingEdgeCallback();
 
 }
 void buttonPressedHandler(void * voidPointer) {
 
-	ViaTrigseq * modulePointer = (ViaTrigseq *) voidPointer;
+	ViaGateseq * modulePointer = (ViaGateseq *) voidPointer;
 	modulePointer->buttonPressedCallback();
 
 }
 void buttonReleasedHandler(void * voidPointer) {
 
-	ViaTrigseq * modulePointer = (ViaTrigseq *) voidPointer;
+	ViaGateseq * modulePointer = (ViaGateseq *) voidPointer;
 	modulePointer->buttonReleasedCallback();
 
 }
 void adcConversionCompleteHandler(void * voidPointer) {
 
-	ViaTrigseq * modulePointer = (ViaTrigseq *) voidPointer;
+	ViaGateseq * modulePointer = (ViaGateseq *) voidPointer;
 	modulePointer->slowConversionCallback();
 
 }
 void dacHalfTransferHandler(void * voidPointer) {
 
-	ViaTrigseq * modulePointer = (ViaTrigseq *) voidPointer;
+	ViaGateseq * modulePointer = (ViaGateseq *) voidPointer;
 	modulePointer->halfTransferCallback();
 
 }
 void dacTransferCompleteHandler(void * voidPointer) {
 
-	ViaTrigseq * modulePointer = (ViaTrigseq *) voidPointer;
+	ViaGateseq * modulePointer = (ViaGateseq *) voidPointer;
 	modulePointer->transferCompleteCallback();
 
 }
@@ -92,5 +95,23 @@ void dacTimerHandler(void *) {
 }
 void sdaadcConversionCompleteHandler(void *) {
 	;
+}
+void auxTimer1InterruptHandler(void * voidPointer) {
+
+	ViaGateseq * modulePointer = (ViaGateseq *) voidPointer;
+	modulePointer->auxTimer1InterruptCallback();
+
+}
+void auxTimer2InterruptHandler(void * voidPointer) {
+
+	ViaGateseq * modulePointer = (ViaGateseq *) voidPointer;
+	modulePointer->auxTimer2InterruptCallback();
+
+}
+void auxTimer3InterruptHandler(void * voidPointer) {
+
+	ViaGateseq * modulePointer = (ViaGateseq *) voidPointer;
+	modulePointer->auxTimer3InterruptCallback();
+
 }
 
