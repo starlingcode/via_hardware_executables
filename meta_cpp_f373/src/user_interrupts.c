@@ -1,8 +1,8 @@
 
+#include <via_f373_system.hpp>
 #include "tsl_user.h"
 #include "stm32f3xx_it.h"
 #include "interrupt_link.hpp"
-#include "f373_rev6_io.hpp"
 
 #define EXPAND_LOGIC_HIGH GPIOA->BRR = (uint32_t)GPIO_PIN_12;
 #define EXPAND_LOGIC_LOW GPIOA->BSRR = (uint32_t)GPIO_PIN_12;

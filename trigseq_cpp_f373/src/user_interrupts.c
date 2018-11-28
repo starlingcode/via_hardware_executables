@@ -1,8 +1,8 @@
 
+#include <via_f373_system.hpp>
 #include "tsl_user.h"
 #include "stm32f3xx_it.h"
 #include "interrupt_link.hpp"
-#include "f373_rev6_io.hpp"
 
 
 int triggerDebounce;
