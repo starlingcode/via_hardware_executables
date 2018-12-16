@@ -28,6 +28,9 @@ void (*dacTransferCompleteCallback)(void*);
 void (*dacTimerCallback)(void*);
 void (*sdaadcConversionCompleteCallback)(void*);
 void (*auxTimer1InterruptCallback)(void*);
+void (*auxTimer2InterruptCallback)(void*);
+
+
 
 #ifdef __cplusplus
 }
@@ -47,6 +50,8 @@ void dacTransferCompleteHandler(void *);
 void dacTimerHandler(void *);
 void sdaadcConversionCompleteHandler(void *);
 void auxTimer1InterruptHandler(void *);
+void auxTimer2InterruptHandler(void *);
+
 
 
 

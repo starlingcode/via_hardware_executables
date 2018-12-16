@@ -4,8 +4,8 @@
 #include "stm32f3xx_it.h"
 #include "interrupt_link.hpp"
 
-#define LOGICA_HIGH GPIOC->BRR = (uint32_t)GPIO_PIN_13;
-#define LOGICA_LOW GPIOC->BSRR = (uint32_t)GPIO_PIN_13;
+#define EXPAND_LOGIC_HIGH GPIOA->BRR = (uint32_t)GPIO_PIN_12;
+#define EXPAND_LOGIC_LOW GPIOA->BSRR = (uint32_t)GPIO_PIN_12;
 
 
 int triggerDebounce;
@@ -20,6 +20,7 @@ extern TIM_HandleTypeDef htim12;
 extern TIM_HandleTypeDef htim13;
 extern TIM_HandleTypeDef htim16;
 extern TIM_HandleTypeDef htim17;
+extern TIM_HandleTypeDef htim18;
 
 
 /*
@@ -111,9 +112,20 @@ void TIM17_IRQHandler(void)
 {
 
 	(*auxTimer1InterruptCallback)(modulePointer);
+	TIM18->CR1 |= TIM_CR1_CEN;
 
 	__HAL_TIM_CLEAR_FLAG(&htim17, TIM_FLAG_UPDATE);
 	__HAL_TIM_DISABLE(&htim17);
+
+}
+
+void TIM18_DAC2_IRQHandler(void)
+{
+
+	(*auxTimer2InterruptCallback)(modulePointer);
+
+	__HAL_TIM_CLEAR_FLAG(&htim18, TIM_FLAG_UPDATE);
+	__HAL_TIM_DISABLE(&htim18);
 
 }
 
@@ -152,6 +164,9 @@ void TIM7_IRQHandler(void)
 void DMA1_Channel1_IRQHandler(void)
 {
 
+	//EXPAND_LOGIC_HIGH
+
+
 	//minimal interrupt handler for circular buffer
 
 	if ((DMA1->ISR & (DMA_FLAG_HT1)) != 0) {
@@ -161,13 +176,14 @@ void DMA1_Channel1_IRQHandler(void)
 		(*adcConversionCompleteCallback)(modulePointer);
 	}
 
+	//EXPAND_LOGIC_LOW
+
 }
-
-
 
 void DMA1_Channel5_IRQHandler(void)
 {
-	//LOGICA_HIGH
+
+	//EXPAND_LOGIC_HIGH
 
 	if ((DMA1->ISR & (DMA_FLAG_HT1 << 16)) != 0) {
 		DMA1->IFCR = DMA_FLAG_HT1 << 16;
@@ -177,7 +193,7 @@ void DMA1_Channel5_IRQHandler(void)
 		(*dacTransferCompleteCallback)(modulePointer);
 	}
 
-	//LOGICA_LOW
+	//EXPAND_LOGIC_LOW
 
 }
 

@@ -6,9 +6,9 @@
  */
 
 #include "interrupt_link.hpp"
-#include "sync.hpp"
+#include "meta.hpp"
 
-void linkInterrupts(ViaSync * voidPointer) {
+void linkInterrupts(ViaMeta * voidPointer) {
 
 	modulePointer = (void *) voidPointer;
 
@@ -25,66 +25,67 @@ void linkInterrupts(ViaSync * voidPointer) {
 	sdaadcConversionCompleteCallback = &sdaadcConversionCompleteHandler;
 	adcConversionCompleteCallback = &adcConversionCompleteHandler;
 	auxTimer1InterruptCallback = &auxTimer1InterruptHandler;
+	auxTimer2InterruptCallback = &auxTimer2InterruptHandler;
 
 }
 
 void uiTimerHandler(void * voidPointer) {
 
-	ViaSync * modulePointer = (ViaSync *) voidPointer;
+	ViaMeta * modulePointer = (ViaMeta *) voidPointer;
 	modulePointer->ui_dispatch(TIMEOUT_SIG);
 
 }
 void mainRisingEdgeHandler(void * voidPointer) {
 
-	ViaSync * modulePointer = (ViaSync *) voidPointer;
+	ViaMeta * modulePointer = (ViaMeta *) voidPointer;
 	modulePointer->mainRisingEdgeCallback();
 
 }
 void mainFallingEdgeHandler(void * voidPointer) {
 
-	ViaSync * modulePointer = (ViaSync *) voidPointer;
+	ViaMeta * modulePointer = (ViaMeta *) voidPointer;
 	modulePointer->mainFallingEdgeCallback();
 
 }
 void auxRisingEdgeHandler(void * voidPointer) {
 
-	ViaSync * modulePointer = (ViaSync *) voidPointer;
+	ViaMeta * modulePointer = (ViaMeta *) voidPointer;
 	modulePointer->auxRisingEdgeCallback();
 
 }
 void auxFallingEdgeHandler(void * voidPointer) {
 
-	ViaSync * modulePointer = (ViaSync *) voidPointer;
+	ViaMeta * modulePointer = (ViaMeta *) voidPointer;
 	modulePointer->auxFallingEdgeCallback();
 
 }
 void buttonPressedHandler(void * voidPointer) {
 
-	ViaSync * modulePointer = (ViaSync *) voidPointer;
+	ViaMeta * modulePointer = (ViaMeta *) voidPointer;
 	modulePointer->buttonPressedCallback();
 
 }
 void buttonReleasedHandler(void * voidPointer) {
 
-	ViaSync * modulePointer = (ViaSync *) voidPointer;
+	ViaMeta * modulePointer = (ViaMeta *) voidPointer;
 	modulePointer->buttonReleasedCallback();
 
 }
 void adcConversionCompleteHandler(void * voidPointer) {
 
-	ViaSync * modulePointer = (ViaSync *) voidPointer;
+	ViaMeta * modulePointer = (ViaMeta *) voidPointer;
 	modulePointer->slowConversionCallback();
 
 }
 void dacHalfTransferHandler(void * voidPointer) {
 
-	ViaSync * modulePointer = (ViaSync *) voidPointer;
+	ViaMeta * modulePointer = (ViaMeta *) voidPointer;
 	modulePointer->halfTransferCallback();
 
 }
 void dacTransferCompleteHandler(void * voidPointer) {
 
-	ViaSync * modulePointer = (ViaSync *) voidPointer;
+	ViaMeta * modulePointer = (ViaMeta *) voidPointer;
 	modulePointer->transferCompleteCallback();
 
 }
@@ -97,7 +98,14 @@ void sdaadcConversionCompleteHandler(void *) {
 
 void auxTimer1InterruptHandler(void * voidPointer) {
 
-	ViaSync * modulePointer = (ViaSync *) voidPointer;
+	ViaMeta * modulePointer = (ViaMeta *) voidPointer;
 	modulePointer->auxTimer1InterruptCallback();
+
+}
+
+void auxTimer2InterruptHandler(void * voidPointer) {
+
+	ViaMeta * modulePointer = (ViaMeta *) voidPointer;
+	modulePointer->auxTimer2InterruptCallback();
 
 }

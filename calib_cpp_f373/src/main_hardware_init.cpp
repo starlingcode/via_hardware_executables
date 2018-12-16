@@ -39,7 +39,6 @@ void mainHardwareInit(void) {
 
 	 //initialize the timer that is used to detect rising and falling edges at the trigger input
 	HAL_TIM_IC_Start_IT(&htim12, TIM_CHANNEL_2);
-	TIM2->CR1 |= TIM_CR1_CEN;
 
 	//initialize the touch sensor time base
 	HAL_TIM_Base_Start_IT(&htim13);
@@ -48,10 +47,13 @@ void mainHardwareInit(void) {
 
 	// initialize the shA timer
 	__HAL_TIM_ENABLE_IT(&htim16, TIM_IT_UPDATE);
-	// initialize the shB timer
+	// initialize the blink timer
 	TIM17->PSC = 1000;
 	TIM17->ARR = 2000;
 	__HAL_TIM_ENABLE_IT(&htim17, TIM_IT_UPDATE);
+	TIM18->PSC = 1000;
+	TIM18->ARR = 2000;
+	__HAL_TIM_ENABLE_IT(&htim18, TIM_IT_UPDATE);
 
 }
 
