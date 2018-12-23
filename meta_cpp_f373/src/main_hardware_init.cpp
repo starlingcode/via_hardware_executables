@@ -33,6 +33,9 @@ void mainHardwareInit(void) {
 	HAL_NVIC_SetPriority(EXTI15_10_IRQn, 1, 0);
 	HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
 
+	HAL_NVIC_SetPriority(DMA1_Channel5_IRQn, 0, 2);
+
+
 	// set the dac sample rate and start the dac timer
 	TIM6->ARR = 179;
 	HAL_TIM_Base_Start(&htim6);
