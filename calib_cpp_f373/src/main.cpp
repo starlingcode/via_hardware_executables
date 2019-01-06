@@ -62,7 +62,7 @@
 
 #define BUILD_F373_REV6
 
-#include "meta.hpp"
+#include "calib.hpp"
 
 extern "C" {
 
@@ -72,7 +72,7 @@ extern "C" {
 
 extern void mainHardwareInit(void);
 
-extern void linkInterrupts(ViaMeta *);
+extern void linkInterrupts(ViaCalib *);
 
 /* USER CODE END Includes */
 
@@ -148,15 +148,14 @@ int main(void)
 
   HAL_FLASH_Unlock();
 
-  ViaMeta module;
-  ViaMeta * moduleAddress = &module;
+  ViaCalib module;
+  ViaCalib * moduleAddress = &module;
   linkInterrupts(moduleAddress);
   mainHardwareInit();
   module.ioStreamInit();
 
   module.setSH(0, 0);
-  module.setLEDD(module.metaUI.aux4Mode);
-  module.outputStage = &ViaMeta::oversample;
+
 
 
   /* USER CODE END 2 */
