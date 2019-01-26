@@ -1,0 +1,67 @@
+\hypertarget{interrupt__link_8cpp}{}\section{src/interrupt\+\_\+link.cpp File Reference}
+\label{interrupt__link_8cpp}\index{src/interrupt\+\_\+link.\+cpp@{src/interrupt\+\_\+link.\+cpp}}
+
+
+Interrupt handler callback implementation.  
+
+
+{\ttfamily \#include \char`\"{}interrupt\+\_\+link.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}calib.\+hpp\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{interrupt__link_8cpp_ac7bd8505b17b9974b3b21dda9ef68439}\label{interrupt__link_8cpp_ac7bd8505b17b9974b3b21dda9ef68439}} 
+void \mbox{\hyperlink{interrupt__link_8cpp_ac7bd8505b17b9974b3b21dda9ef68439}{link\+Interrupts}} (Via\+Calib $\ast$void\+Pointer)
+\begin{DoxyCompactList}\small\item\em Assign the callback function pointers to the wrapper functions and the pointer to the module class to the void pointer module\+Pointer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\textbf{ }\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{interrupt__link_8cpp_aea31714d11bacebbf64724cea9de1883}\label{interrupt__link_8cpp_aea31714d11bacebbf64724cea9de1883}} 
+void \mbox{\hyperlink{interrupt__link_8cpp_aea31714d11bacebbf64724cea9de1883}{ui\+Timer\+Handler}} (void $\ast$void\+Pointer)
+\begin{DoxyCompactList}\small\item\em Cast the void pointer to used to reference the module class to an actual pointer to the class. Use that to call the appropriate handler method. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{interrupt__link_8cpp_a1a07e54f7adc6410823544386d7692ba}\label{interrupt__link_8cpp_a1a07e54f7adc6410823544386d7692ba}} 
+void \mbox{\hyperlink{interrupt__link_8cpp_a1a07e54f7adc6410823544386d7692ba}{main\+Rising\+Edge\+Handler}} (void $\ast$void\+Pointer)
+\begin{DoxyCompactList}\small\item\em Cast the void pointer to used to reference the module class to an actual pointer to the class. Use that to call the appropriate handler method. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{interrupt__link_8cpp_a7fff69de4bbec320b8cdf6624f8b6deb}\label{interrupt__link_8cpp_a7fff69de4bbec320b8cdf6624f8b6deb}} 
+void \mbox{\hyperlink{interrupt__link_8cpp_a7fff69de4bbec320b8cdf6624f8b6deb}{main\+Falling\+Edge\+Handler}} (void $\ast$void\+Pointer)
+\begin{DoxyCompactList}\small\item\em Cast the void pointer to used to reference the module class to an actual pointer to the class. Use that to call the appropriate handler method. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{interrupt__link_8cpp_ae934fd3642b724ba293a17f594ca4420}\label{interrupt__link_8cpp_ae934fd3642b724ba293a17f594ca4420}} 
+void \mbox{\hyperlink{interrupt__link_8cpp_ae934fd3642b724ba293a17f594ca4420}{aux\+Rising\+Edge\+Handler}} (void $\ast$void\+Pointer)
+\begin{DoxyCompactList}\small\item\em Cast the void pointer to used to reference the module class to an actual pointer to the class. Use that to call the appropriate handler method. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{interrupt__link_8cpp_a07c0c1d74b50a7672cdb6478bfa87032}\label{interrupt__link_8cpp_a07c0c1d74b50a7672cdb6478bfa87032}} 
+void \mbox{\hyperlink{interrupt__link_8cpp_a07c0c1d74b50a7672cdb6478bfa87032}{aux\+Falling\+Edge\+Handler}} (void $\ast$void\+Pointer)
+\begin{DoxyCompactList}\small\item\em Cast the void pointer to used to reference the module class to an actual pointer to the class. Use that to call the appropriate handler method. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{interrupt__link_8cpp_a1882bda8acd7bb890bce8d0129cc13f3}\label{interrupt__link_8cpp_a1882bda8acd7bb890bce8d0129cc13f3}} 
+void \mbox{\hyperlink{interrupt__link_8cpp_a1882bda8acd7bb890bce8d0129cc13f3}{button\+Pressed\+Handler}} (void $\ast$void\+Pointer)
+\begin{DoxyCompactList}\small\item\em Cast the void pointer to used to reference the module class to an actual pointer to the class. Use that to call the appropriate handler method. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{interrupt__link_8cpp_a1ce92386f172723f0e46ae4b1ad3b90c}\label{interrupt__link_8cpp_a1ce92386f172723f0e46ae4b1ad3b90c}} 
+void \mbox{\hyperlink{interrupt__link_8cpp_a1ce92386f172723f0e46ae4b1ad3b90c}{button\+Released\+Handler}} (void $\ast$void\+Pointer)
+\begin{DoxyCompactList}\small\item\em Cast the void pointer to used to reference the module class to an actual pointer to the class. Use that to call the appropriate handler method. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{interrupt__link_8cpp_a53bf3ab6ca74d7ddd0d13506ae04911d}\label{interrupt__link_8cpp_a53bf3ab6ca74d7ddd0d13506ae04911d}} 
+void \mbox{\hyperlink{interrupt__link_8cpp_a53bf3ab6ca74d7ddd0d13506ae04911d}{adc\+Conversion\+Complete\+Handler}} (void $\ast$void\+Pointer)
+\begin{DoxyCompactList}\small\item\em Cast the void pointer to used to reference the module class to an actual pointer to the class. Use that to call the appropriate handler method. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{interrupt__link_8cpp_a27aa893732fac23a3e2ae9c0fbae866b}\label{interrupt__link_8cpp_a27aa893732fac23a3e2ae9c0fbae866b}} 
+void \mbox{\hyperlink{interrupt__link_8cpp_a27aa893732fac23a3e2ae9c0fbae866b}{dac\+Half\+Transfer\+Handler}} (void $\ast$void\+Pointer)
+\begin{DoxyCompactList}\small\item\em Cast the void pointer to used to reference the module class to an actual pointer to the class. Use that to call the appropriate handler method. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{interrupt__link_8cpp_a62e8473cec58c0e86e386396e39c9891}\label{interrupt__link_8cpp_a62e8473cec58c0e86e386396e39c9891}} 
+void \mbox{\hyperlink{interrupt__link_8cpp_a62e8473cec58c0e86e386396e39c9891}{dac\+Transfer\+Complete\+Handler}} (void $\ast$void\+Pointer)
+\begin{DoxyCompactList}\small\item\em Cast the void pointer to used to reference the module class to an actual pointer to the class. Use that to call the appropriate handler method. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{interrupt__link_8cpp_a06ab0209e2bcdb09863f3ff9b7db2818}\label{interrupt__link_8cpp_a06ab0209e2bcdb09863f3ff9b7db2818}} 
+void \mbox{\hyperlink{interrupt__link_8cpp_a06ab0209e2bcdb09863f3ff9b7db2818}{dac\+Timer\+Handler}} (void $\ast$)
+\begin{DoxyCompactList}\small\item\em Cast the void pointer to used to reference the module class to an actual pointer to the class. Use that to call the appropriate handler method. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{interrupt__link_8cpp_a26d5c7918b67ecc6316c0ed2ed4bbbda}\label{interrupt__link_8cpp_a26d5c7918b67ecc6316c0ed2ed4bbbda}} 
+void \mbox{\hyperlink{interrupt__link_8cpp_a26d5c7918b67ecc6316c0ed2ed4bbbda}{sdaadc\+Conversion\+Complete\+Handler}} (void $\ast$)
+\begin{DoxyCompactList}\small\item\em Cast the void pointer to used to reference the module class to an actual pointer to the class. Use that to call the appropriate handler method. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{interrupt__link_8cpp_a98f9c77a92a28834a78b81a318715cbf}\label{interrupt__link_8cpp_a98f9c77a92a28834a78b81a318715cbf}} 
+void \mbox{\hyperlink{interrupt__link_8cpp_a98f9c77a92a28834a78b81a318715cbf}{aux\+Timer1\+Interrupt\+Handler}} (void $\ast$void\+Pointer)
+\begin{DoxyCompactList}\small\item\em Cast the void pointer to used to reference the module class to an actual pointer to the class. Use that to call the appropriate handler method. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{interrupt__link_8cpp_af46b9e24001870b85bf68b7a2e66dcfd}\label{interrupt__link_8cpp_af46b9e24001870b85bf68b7a2e66dcfd}} 
+void \mbox{\hyperlink{interrupt__link_8cpp_af46b9e24001870b85bf68b7a2e66dcfd}{aux\+Timer2\+Interrupt\+Handler}} (void $\ast$void\+Pointer)
+\begin{DoxyCompactList}\small\item\em Cast the void pointer to used to reference the module class to an actual pointer to the class. Use that to call the appropriate handler method. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+
+\subsection{Detailed Description}
+Interrupt handler callback implementation. 
+
+The functions in this file link wraps the methods of the module class in C friendly callbacks. If I recall, this was necessary because the interrupt handler functions called from the system N\+V\+IC needed to be defined in C code. 

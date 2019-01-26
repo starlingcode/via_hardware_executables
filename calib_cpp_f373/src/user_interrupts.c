@@ -1,13 +1,17 @@
+/** \file user_interrupts.c
+ * \brief Calibration module implementation.
+ *
+ *  A module implementing a simple testing/calibration helper program that serves as a template.
+ *  See src/main_hardware_init.cpp for details on MCU setup, see src/interrupt_link.cpp, inc/interrupt_link.cpp for callback function implementation.
+ *
+ */
 
 #include <via_f373_system.hpp>
 #include "tsl_user.h"
 #include "stm32f3xx_it.h"
 #include "interrupt_link.hpp"
 
-#define EXPAND_LOGIC_HIGH GPIOA->BRR = (uint32_t)GPIO_PIN_12;
-#define EXPAND_LOGIC_LOW GPIOA->BSRR = (uint32_t)GPIO_PIN_12;
-
-
+/// Flag to enforce a debounce timeout for the push button
 int triggerDebounce;
 
 #ifdef __cplusplus
@@ -29,8 +33,7 @@ extern TIM_HandleTypeDef htim18;
  *
  */
 
-// Main trigger input
-
+/// Main logic input state change handler. Signal the appropriate rising or falling edge handler according to GPIO state.
 void TIM12_IRQHandler(void)
 {
 
@@ -44,8 +47,7 @@ void TIM12_IRQHandler(void)
 
 }
 
-// Aux trigger input
-
+/// Aux logic input state change handler. Signal the appropriate rising or falling edge handler according to GPIO state.
 void EXTI15_10_IRQHandler(void)
 {
 
@@ -59,11 +61,11 @@ void EXTI15_10_IRQHandler(void)
 
 }
 
-// Expander button
-
+/// Trigger button input state change handler. Signal the appropriate rising or falling edge handler according to GPIO state and debounce routine.
 void EXTI1_IRQHandler(void)
 {
 
+	/** If the button has been pressed and the debounce flag is not active, set the debounce timer, raise the flag, and call the handler. Pass if debounce flag is active. */
 	if (EXPANDER_BUTTON_PRESSED) {
 		if (!triggerDebounce) {
 			//uiDispatch(EXPAND_SW_ON_SIG);
@@ -71,6 +73,7 @@ void EXTI1_IRQHandler(void)
 			__HAL_TIM_ENABLE(&htim16);
 			(*buttonPressedCallback)(modulePointer);
 		}
+	/** If the button has been released and the debounce flag is not active, set the debounce timer, raise the flag, and call the handler. Pass if debounce flag is active. */
 	} else { //falling edge
 		if (!triggerDebounce) {
 			//uiDispatch(EXPAND_SW_OFF_SIG);
@@ -90,8 +93,7 @@ void EXTI1_IRQHandler(void)
  *
  */
 
-// SH A
-
+/// Trigger button debounce timer interrupt handler. Disable the debounce flag and call the release handler if the button was released during the debounce timeout.
 void TIM16_IRQHandler(void)
 {
 
@@ -106,8 +108,7 @@ void TIM16_IRQHandler(void)
 
 }
 
-// SH B
-
+/// Aux timer 1 interrupt handler to signal timer update events (overflow).
 void TIM17_IRQHandler(void)
 {
 
@@ -119,6 +120,7 @@ void TIM17_IRQHandler(void)
 
 }
 
+/// Aux timer 2 interrupt handler to signal timer update events (overflow).
 void TIM18_DAC2_IRQHandler(void)
 {
 
@@ -129,8 +131,7 @@ void TIM18_DAC2_IRQHandler(void)
 
 }
 
-// run touch sensor state machine
-
+/// Touch sense library execution interrupt handler, executes touch sensor state machine on every timer overflow.
 void TIM13_IRQHandler(void)
 {
 
@@ -141,11 +142,9 @@ void TIM13_IRQHandler(void)
 
 }
 
-// ui timer
-
+/// UI timer interrupt handler.
 void TIM7_IRQHandler(void)
 {
-
 
 	(*uiTimerCallback)(modulePointer);
 
@@ -159,16 +158,11 @@ void TIM7_IRQHandler(void)
  *
  */
 
-// slow ADCs
-
+/// Control rate ADC conversion complete callback. Only transfer complete is handled because this indicates conversion for all 4 inputs.
 void DMA1_Channel1_IRQHandler(void)
 {
 
-	//EXPAND_LOGIC_HIGH
-
-
-	//minimal interrupt handler for circular buffer
-
+	// minimal interrupt handler for circular buffer
 	if ((DMA1->ISR & (DMA_FLAG_HT1)) != 0) {
 		DMA1->IFCR = DMA_FLAG_HT1;
 	} else {
@@ -176,14 +170,11 @@ void DMA1_Channel1_IRQHandler(void)
 		(*adcConversionCompleteCallback)(modulePointer);
 	}
 
-	//EXPAND_LOGIC_LOW
-
 }
 
+/// Dac transfer complete event handler, inspect the DMA control register to determine if half transfer or full transfer.
 void DMA1_Channel5_IRQHandler(void)
 {
-
-	//EXPAND_LOGIC_HIGH
 
 	if ((DMA1->ISR & (DMA_FLAG_HT1 << 16)) != 0) {
 		DMA1->IFCR = DMA_FLAG_HT1 << 16;
@@ -192,8 +183,6 @@ void DMA1_Channel5_IRQHandler(void)
 		DMA1->IFCR = DMA_FLAG_TC1 << 16;
 		(*dacTransferCompleteCallback)(modulePointer);
 	}
-
-	//EXPAND_LOGIC_LOW
 
 }
 

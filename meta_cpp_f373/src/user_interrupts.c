@@ -66,14 +66,12 @@ void EXTI1_IRQHandler(void)
 
 	if (EXPANDER_BUTTON_PRESSED) {
 		if (!triggerDebounce) {
-			//uiDispatch(EXPAND_SW_ON_SIG);
 			triggerDebounce = 1;
 			__HAL_TIM_ENABLE(&htim16);
 			(*buttonPressedCallback)(modulePointer);
 		}
 	} else { //falling edge
 		if (!triggerDebounce) {
-			//uiDispatch(EXPAND_SW_OFF_SIG);
 			triggerDebounce = 1;
 			__HAL_TIM_ENABLE(&htim16);
 			(*buttonReleasedCallback)(modulePointer);

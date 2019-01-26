@@ -1,8 +1,8 @@
-/*
- * interrupt_link.hpp
+ /** \file interrupt_link.hpp
+ * \brief Interrupt handler callback declarations.
  *
- *  Created on: Sep 15, 2018
- *      Author: willmitchell
+ * Declare the anonymous callback function pointers and functions that will be assigned to them.
+ *
  */
 
 #ifndef INTERRUPT_LINK_HPP_
@@ -12,8 +12,11 @@
 extern "C" {
 #endif
 
+/// This is used as an anonymous pointer to the main module class instance so it can be referenced in C code.
 void * modulePointer;
 
+//@{
+/// A callback function to allow C code to call methods of the main module class by passing in the modulePointer void pointer.
 void (*tscTimerCallback)(void*);
 void (*uiTimerCallback)(void*);
 void (*mainRisingEdgeCallback)(void*);
@@ -29,6 +32,7 @@ void (*dacTimerCallback)(void*);
 void (*sdaadcConversionCompleteCallback)(void*);
 void (*auxTimer1InterruptCallback)(void*);
 void (*auxTimer2InterruptCallback)(void*);
+//@}
 
 
 
@@ -36,6 +40,8 @@ void (*auxTimer2InterruptCallback)(void*);
 }
 #endif
 
+//@{
+/// A function implementation to be assigned to the appropriate callback.
 void tscTimerHandler(void *);
 void uiTimerHandler(void *);
 void mainRisingEdgeHandler(void *);
@@ -51,6 +57,7 @@ void dacTimerHandler(void *);
 void sdaadcConversionCompleteHandler(void *);
 void auxTimer1InterruptHandler(void *);
 void auxTimer2InterruptHandler(void *);
+//@}
 
 
 

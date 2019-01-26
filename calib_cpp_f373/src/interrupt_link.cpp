@@ -1,13 +1,15 @@
-/*
- * interrupt_link.cpp
+ /** \file interrupt_link.cpp
+ * \brief Interrupt handler callback implementation.
  *
- *  Created on: Sep 15, 2018
- *      Author: willmitchell
+ * The functions in this file link wraps the methods of the module class in C friendly callbacks.
+ * If I recall, this was necessary because the interrupt handler functions called from the system NVIC needed to be defined in C code.
+ *
  */
 
 #include "interrupt_link.hpp"
 #include "calib.hpp"
 
+/// Assign the callback function pointers to the wrapper functions and the pointer to the module class to the void pointer modulePointer.
 void linkInterrupts(ViaCalib * voidPointer) {
 
 	modulePointer = (void *) voidPointer;
@@ -29,6 +31,8 @@ void linkInterrupts(ViaCalib * voidPointer) {
 
 }
 
+//@{
+/// Cast the void pointer to used to reference the module class to an actual pointer to the class. Use that to call the appropriate handler method.
 void uiTimerHandler(void * voidPointer) {
 
 	ViaCalib * modulePointer = (ViaCalib *) voidPointer;
@@ -109,3 +113,4 @@ void auxTimer2InterruptHandler(void * voidPointer) {
 	modulePointer->auxTimer2InterruptCallback();
 
 }
+//@}

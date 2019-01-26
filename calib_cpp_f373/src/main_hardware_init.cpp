@@ -1,4 +1,9 @@
-
+ /** \file main_hardware_init.cpp
+ * \brief Hardware initialization function.
+ *
+ * Set up the peripherals to properly invoke interrupt events and send/receive data from the module class.
+ *
+ */
 /* USER CODE BEGIN Includes */
 
 #include <via_platform_binding.hpp>
@@ -17,9 +22,7 @@ extern void mainHardwareInit(void);
 
 void mainHardwareInit(void) {
 
-/* Start Calibration in polling mode */
-
-	// initialize RGB led
+	/// Initialize RGB led PWM generation timers.
 	HAL_TIM_Base_Start(&htim3);
 	HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_2);
 	HAL_TIM_Base_Start(&htim4);
@@ -27,27 +30,27 @@ void mainHardwareInit(void) {
 	HAL_TIM_Base_Start(&htim5);
 	HAL_TIM_PWM_Start(&htim5, TIM_CHANNEL_1);
 
-	// set the priority and enable an interrupt line to be used by the trigger button input and aux trigger
+	/// Set the priority and enable an interrupt line to be used by the trigger button input and aux trigger.
 	HAL_NVIC_SetPriority(EXTI1_IRQn, 3, 0);
 	HAL_NVIC_EnableIRQ(EXTI1_IRQn);
 	HAL_NVIC_SetPriority(EXTI15_10_IRQn, 1, 0);
 	HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
 
-	// set the dac sample rate and start the dac timer
+	/// Set the dac sample rate in number of processor clocks (72mhz) and start the dac timer. Timer overflow amount should be a factor or multiple of 1440 less one to line up with SDADC conversion.
 	TIM6->ARR = 179;
 	HAL_TIM_Base_Start(&htim6);
 
-	 //initialize the timer that is used to detect rising and falling edges at the trigger input
+	/// Initialize the timer that is used to detect rising and falling edges at the trigger input.
 	HAL_TIM_IC_Start_IT(&htim12, TIM_CHANNEL_2);
 
-	//initialize the touch sensor time base
+	/// Initialize the touch sensor time base.
 	HAL_TIM_Base_Start_IT(&htim13);
-	//	 initialize the timer that is used for touch sensor press timeout
+	// Initialize the timer that is used for touch sensor press timeout.
 	__HAL_TIM_ENABLE_IT(&htim7, TIM_IT_UPDATE);
 
-	// initialize the shA timer
+	/// Initialize the trigger debounce timer.
 	__HAL_TIM_ENABLE_IT(&htim16, TIM_IT_UPDATE);
-	// initialize the blink timer
+	/// Initialize the aux timers.
 	TIM17->PSC = 1000;
 	TIM17->ARR = 2000;
 	__HAL_TIM_ENABLE_IT(&htim17, TIM_IT_UPDATE);
@@ -55,35 +58,4 @@ void mainHardwareInit(void) {
 	TIM18->ARR = 2000;
 	__HAL_TIM_ENABLE_IT(&htim18, TIM_IT_UPDATE);
 
-}
-
-// stores the sdadc reading at ground for offset compensation
-
-void sdadcOffsetCalibration(int16_t * cv2SampleBuffer, int16_t * cv3SampleBuffer) {
-
-	uint16_t bottomHalf = cv2SampleBuffer[0] >> 2;
-	uint16_t topHalf = cv3SampleBuffer[0] >> 2;
-
-	FLASH_OBProgramInitTypeDef pOBInit;
-	HAL_FLASHEx_OBGetConfig(&pOBInit);
-	HAL_StatusTypeDef obStatus;
-
-	pOBInit.OptionType = OPTIONBYTE_WRP;
-	pOBInit.WRPState = OB_WRPSTATE_DISABLE;
-
-	HAL_FLASH_Unlock();
-	HAL_FLASH_OB_Unlock();
-	obStatus = HAL_FLASHEx_OBProgram(&pOBInit);
-
-	pOBInit.OptionType = OPTIONBYTE_DATA;
-	pOBInit.DATAAddress = OB_DATA_ADDRESS_DATA0;
-	pOBInit.DATAData = bottomHalf;
-
-	obStatus = HAL_FLASHEx_OBProgram(&pOBInit);
-
-	pOBInit.DATAAddress = OB_DATA_ADDRESS_DATA1;
-	pOBInit.DATAData = topHalf;
-
-	obStatus = HAL_FLASHEx_OBProgram(&pOBInit);
-	HAL_FLASH_OB_Launch();
 }

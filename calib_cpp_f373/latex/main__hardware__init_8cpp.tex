@@ -1,0 +1,54 @@
+\hypertarget{main__hardware__init_8cpp}{}\section{src/main\+\_\+hardware\+\_\+init.cpp File Reference}
+\label{main__hardware__init_8cpp}\index{src/main\+\_\+hardware\+\_\+init.\+cpp@{src/main\+\_\+hardware\+\_\+init.\+cpp}}
+
+
+Hardware initialization function.  
+
+
+{\ttfamily \#include $<$via\+\_\+platform\+\_\+binding.\+hpp$>$}\newline
+{\ttfamily \#include \char`\"{}main.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}stm32f3xx\+\_\+hal.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}adc.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}dac.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}dma.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}sdadc.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tim.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}touchsensing.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tsc.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gpio.\+h\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{main__hardware__init_8cpp_a9c0bc32773754893e246e8014ac3743a}{main\+Hardware\+Init}} (void)
+\begin{DoxyCompactList}\small\item\em Hardware initialization wrapper function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Hardware initialization function. 
+
+Set up the peripherals to properly invoke interrupt events and send/receive data from the module class. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{main__hardware__init_8cpp_a9c0bc32773754893e246e8014ac3743a}\label{main__hardware__init_8cpp_a9c0bc32773754893e246e8014ac3743a}} 
+\index{main\+\_\+hardware\+\_\+init.\+cpp@{main\+\_\+hardware\+\_\+init.\+cpp}!main\+Hardware\+Init@{main\+Hardware\+Init}}
+\index{main\+Hardware\+Init@{main\+Hardware\+Init}!main\+\_\+hardware\+\_\+init.\+cpp@{main\+\_\+hardware\+\_\+init.\+cpp}}
+\subsubsection{\texorpdfstring{main\+Hardware\+Init()}{mainHardwareInit()}}
+{\footnotesize\ttfamily void main\+Hardware\+Init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Hardware initialization wrapper function. 
+
+Hardware initialization routine. Initialize R\+GB led P\+WM generation timers.
+
+Set the priority and enable an interrupt line to be used by the trigger button input and aux trigger.
+
+Set the dac sample rate in number of processor clocks (72mhz) and start the dac timer. Timer overflow amount should be a factor or multiple of 1440 less one to line up with S\+D\+A\+DC conversion.
+
+Initialize the timer that is used to detect rising and falling edges at the trigger input.
+
+Initialize the touch sensor time base.
+
+Initialize the trigger debounce timer.
+
+Initialize the aux timers. 

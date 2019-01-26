@@ -1,0 +1,90 @@
+\hypertarget{user__interrupts_8c}{}\section{src/user\+\_\+interrupts.c File Reference}
+\label{user__interrupts_8c}\index{src/user\+\_\+interrupts.\+c@{src/user\+\_\+interrupts.\+c}}
+
+
+Calibration module implementation.  
+
+
+{\ttfamily \#include $<$via\+\_\+f373\+\_\+system.\+hpp$>$}\newline
+{\ttfamily \#include \char`\"{}tsl\+\_\+user.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}stm32f3xx\+\_\+it.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}interrupt\+\_\+link.\+hpp\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{user__interrupts_8c_aa6691f9947ff72bae0c9a47f5023cd39}\label{user__interrupts_8c_aa6691f9947ff72bae0c9a47f5023cd39}} 
+void \mbox{\hyperlink{user__interrupts_8c_aa6691f9947ff72bae0c9a47f5023cd39}{T\+I\+M12\+\_\+\+I\+R\+Q\+Handler}} (void)
+\begin{DoxyCompactList}\small\item\em Main logic input state change handler. Signal the appropriate rising or falling edge handler according to G\+P\+IO state. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{user__interrupts_8c_a738473a5b43f6c92b80ce1d3d6f77ed9}\label{user__interrupts_8c_a738473a5b43f6c92b80ce1d3d6f77ed9}} 
+void \mbox{\hyperlink{user__interrupts_8c_a738473a5b43f6c92b80ce1d3d6f77ed9}{E\+X\+T\+I15\+\_\+10\+\_\+\+I\+R\+Q\+Handler}} (void)
+\begin{DoxyCompactList}\small\item\em Aux logic input state change handler. Signal the appropriate rising or falling edge handler according to G\+P\+IO state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{user__interrupts_8c_a49cfdd46eb8d0ef3e1987514aa9343dc}{E\+X\+T\+I1\+\_\+\+I\+R\+Q\+Handler}} (void)
+\begin{DoxyCompactList}\small\item\em Trigger button input state change handler. Signal the appropriate rising or falling edge handler according to G\+P\+IO state and debounce routine. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{user__interrupts_8c_ae194ef2e9384ca2fd29c2615e6dc4093}\label{user__interrupts_8c_ae194ef2e9384ca2fd29c2615e6dc4093}} 
+void \mbox{\hyperlink{user__interrupts_8c_ae194ef2e9384ca2fd29c2615e6dc4093}{T\+I\+M16\+\_\+\+I\+R\+Q\+Handler}} (void)
+\begin{DoxyCompactList}\small\item\em Trigger button debounce timer interrupt handler. Disable the debounce flag and call the release handler if the button was released during the debounce timeout. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{user__interrupts_8c_ab219fe510cd6e492a782cde5290eb0e3}\label{user__interrupts_8c_ab219fe510cd6e492a782cde5290eb0e3}} 
+void \mbox{\hyperlink{user__interrupts_8c_ab219fe510cd6e492a782cde5290eb0e3}{T\+I\+M17\+\_\+\+I\+R\+Q\+Handler}} (void)
+\begin{DoxyCompactList}\small\item\em Aux timer 1 interrupt handler to signal timer update events (overflow). \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{user__interrupts_8c_a2e50d393d320ff22dfd6583fa2104a86}\label{user__interrupts_8c_a2e50d393d320ff22dfd6583fa2104a86}} 
+void \mbox{\hyperlink{user__interrupts_8c_a2e50d393d320ff22dfd6583fa2104a86}{T\+I\+M18\+\_\+\+D\+A\+C2\+\_\+\+I\+R\+Q\+Handler}} (void)
+\begin{DoxyCompactList}\small\item\em Aux timer 2 interrupt handler to signal timer update events (overflow). \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{user__interrupts_8c_a1cf54a62da7847a977c9326a92c9b087}\label{user__interrupts_8c_a1cf54a62da7847a977c9326a92c9b087}} 
+void \mbox{\hyperlink{user__interrupts_8c_a1cf54a62da7847a977c9326a92c9b087}{T\+I\+M13\+\_\+\+I\+R\+Q\+Handler}} (void)
+\begin{DoxyCompactList}\small\item\em Touch sense library execution interrupt handler, executes touch sensor state machine on every timer overflow. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{user__interrupts_8c_a98cff83252098363b2dbca9608df964e}\label{user__interrupts_8c_a98cff83252098363b2dbca9608df964e}} 
+void \mbox{\hyperlink{user__interrupts_8c_a98cff83252098363b2dbca9608df964e}{T\+I\+M7\+\_\+\+I\+R\+Q\+Handler}} (void)
+\begin{DoxyCompactList}\small\item\em UI timer interrupt handler. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{user__interrupts_8c_a7b6fac3d670a4860ebec8a961d5c4a73}\label{user__interrupts_8c_a7b6fac3d670a4860ebec8a961d5c4a73}} 
+void \mbox{\hyperlink{user__interrupts_8c_a7b6fac3d670a4860ebec8a961d5c4a73}{D\+M\+A1\+\_\+\+Channel1\+\_\+\+I\+R\+Q\+Handler}} (void)
+\begin{DoxyCompactList}\small\item\em Control rate A\+DC conversion complete callback. Only transfer complete is handled because this indicates conversion for all 4 inputs. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{user__interrupts_8c_abd16b3391557c4a3a8020d675e2c452f}\label{user__interrupts_8c_abd16b3391557c4a3a8020d675e2c452f}} 
+void \mbox{\hyperlink{user__interrupts_8c_abd16b3391557c4a3a8020d675e2c452f}{D\+M\+A1\+\_\+\+Channel5\+\_\+\+I\+R\+Q\+Handler}} (void)
+\begin{DoxyCompactList}\small\item\em Dac transfer complete event handler, inspect the D\+MA control register to determine if half transfer or full transfer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{user__interrupts_8c_ab8505c901eb174715230ab9fcfbf12dd}\label{user__interrupts_8c_ab8505c901eb174715230ab9fcfbf12dd}} 
+int \mbox{\hyperlink{user__interrupts_8c_ab8505c901eb174715230ab9fcfbf12dd}{trigger\+Debounce}}
+\begin{DoxyCompactList}\small\item\em Flag to enforce a debounce timeout for the push button. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{user__interrupts_8c_a1564492831a79fa18466467c3420c3c3}\label{user__interrupts_8c_a1564492831a79fa18466467c3420c3c3}} 
+T\+I\+M\+\_\+\+Handle\+Type\+Def {\bfseries htim6}
+\item 
+\mbox{\Hypertarget{user__interrupts_8c_abb71bf3ee68e2a051fbeec6c3ab3012d}\label{user__interrupts_8c_abb71bf3ee68e2a051fbeec6c3ab3012d}} 
+T\+I\+M\+\_\+\+Handle\+Type\+Def {\bfseries htim7}
+\item 
+\mbox{\Hypertarget{user__interrupts_8c_aab9f881b6ce706635a5be2e500f5c6cc}\label{user__interrupts_8c_aab9f881b6ce706635a5be2e500f5c6cc}} 
+T\+I\+M\+\_\+\+Handle\+Type\+Def {\bfseries htim12}
+\item 
+\mbox{\Hypertarget{user__interrupts_8c_a14ed9010da24d22abca21fbe3dfca55d}\label{user__interrupts_8c_a14ed9010da24d22abca21fbe3dfca55d}} 
+T\+I\+M\+\_\+\+Handle\+Type\+Def {\bfseries htim13}
+\item 
+\mbox{\Hypertarget{user__interrupts_8c_af0bea8d8759a0d7e0e296edc9f5d6936}\label{user__interrupts_8c_af0bea8d8759a0d7e0e296edc9f5d6936}} 
+T\+I\+M\+\_\+\+Handle\+Type\+Def {\bfseries htim16}
+\item 
+\mbox{\Hypertarget{user__interrupts_8c_a51c6d0c070f8c00f33ee08b4f1eb6e90}\label{user__interrupts_8c_a51c6d0c070f8c00f33ee08b4f1eb6e90}} 
+T\+I\+M\+\_\+\+Handle\+Type\+Def {\bfseries htim17}
+\item 
+\mbox{\Hypertarget{user__interrupts_8c_ac935557758fbf8b9d8f3c674e6ddc658}\label{user__interrupts_8c_ac935557758fbf8b9d8f3c674e6ddc658}} 
+T\+I\+M\+\_\+\+Handle\+Type\+Def {\bfseries htim18}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Calibration module implementation. 
+
+A module implementing a simple testing/calibration helper program that serves as a template. See \mbox{\hyperlink{main__hardware__init_8cpp}{src/main\+\_\+hardware\+\_\+init.\+cpp}} for details on M\+CU setup, see \mbox{\hyperlink{interrupt__link_8cpp}{src/interrupt\+\_\+link.\+cpp}}, inc/interrupt\+\_\+link.\+cpp for callback function implementation. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{user__interrupts_8c_a49cfdd46eb8d0ef3e1987514aa9343dc}\label{user__interrupts_8c_a49cfdd46eb8d0ef3e1987514aa9343dc}} 
+\index{user\+\_\+interrupts.\+c@{user\+\_\+interrupts.\+c}!E\+X\+T\+I1\+\_\+\+I\+R\+Q\+Handler@{E\+X\+T\+I1\+\_\+\+I\+R\+Q\+Handler}}
+\index{E\+X\+T\+I1\+\_\+\+I\+R\+Q\+Handler@{E\+X\+T\+I1\+\_\+\+I\+R\+Q\+Handler}!user\+\_\+interrupts.\+c@{user\+\_\+interrupts.\+c}}
+\subsubsection{\texorpdfstring{E\+X\+T\+I1\+\_\+\+I\+R\+Q\+Handler()}{EXTI1\_IRQHandler()}}
+{\footnotesize\ttfamily void E\+X\+T\+I1\+\_\+\+I\+R\+Q\+Handler (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Trigger button input state change handler. Signal the appropriate rising or falling edge handler according to G\+P\+IO state and debounce routine. 
+
+If the button has been pressed and the debounce flag is not active, set the debounce timer, raise the flag, and call the handler. Pass if debounce flag is active. ~\newline
+ If the button has been released and the debounce flag is not active, set the debounce timer, raise the flag, and call the handler. Pass if debounce flag is active. 

@@ -54,34 +54,3 @@ void mainHardwareInit(void) {
 	__HAL_TIM_ENABLE_IT(&htim17, TIM_IT_UPDATE);
 
 }
-
-// stores the sdadc reading at ground for offset compensation
-
-void sdadcOffsetCalibration(int16_t * cv2SampleBuffer, int16_t * cv3SampleBuffer) {
-
-	uint16_t bottomHalf = cv2SampleBuffer[0] >> 2;
-	uint16_t topHalf = cv3SampleBuffer[0] >> 2;
-
-	FLASH_OBProgramInitTypeDef pOBInit;
-	HAL_FLASHEx_OBGetConfig(&pOBInit);
-	HAL_StatusTypeDef obStatus;
-
-	pOBInit.OptionType = OPTIONBYTE_WRP;
-	pOBInit.WRPState = OB_WRPSTATE_DISABLE;
-
-	HAL_FLASH_Unlock();
-	HAL_FLASH_OB_Unlock();
-	obStatus = HAL_FLASHEx_OBProgram(&pOBInit);
-
-	pOBInit.OptionType = OPTIONBYTE_DATA;
-	pOBInit.DATAAddress = OB_DATA_ADDRESS_DATA0;
-	pOBInit.DATAData = bottomHalf;
-
-	obStatus = HAL_FLASHEx_OBProgram(&pOBInit);
-
-	pOBInit.DATAAddress = OB_DATA_ADDRESS_DATA1;
-	pOBInit.DATAData = topHalf;
-
-	obStatus = HAL_FLASHEx_OBProgram(&pOBInit);
-	HAL_FLASH_OB_Launch();
-}

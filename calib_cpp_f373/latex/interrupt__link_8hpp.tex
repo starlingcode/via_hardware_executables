@@ -1,0 +1,118 @@
+\hypertarget{interrupt__link_8hpp}{}\section{inc/interrupt\+\_\+link.hpp File Reference}
+\label{interrupt__link_8hpp}\index{inc/interrupt\+\_\+link.\+hpp@{inc/interrupt\+\_\+link.\+hpp}}
+
+
+Interrupt handler callback declarations.  
+
+
+\subsection*{Functions}
+\textbf{ }\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{interrupt__link_8hpp_ac53c57b013f72987a3e05c1775ffc549}\label{interrupt__link_8hpp_ac53c57b013f72987a3e05c1775ffc549}} 
+void \mbox{\hyperlink{interrupt__link_8hpp_ac53c57b013f72987a3e05c1775ffc549}{tsc\+Timer\+Handler}} (void $\ast$)
+\begin{DoxyCompactList}\small\item\em A function implementation to be assigned to the appropriate callback. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{interrupt__link_8hpp_ae59d3103f95ad8324f2eaea803713a80}\label{interrupt__link_8hpp_ae59d3103f95ad8324f2eaea803713a80}} 
+void \mbox{\hyperlink{interrupt__link_8hpp_ae59d3103f95ad8324f2eaea803713a80}{ui\+Timer\+Handler}} (void $\ast$)
+\begin{DoxyCompactList}\small\item\em Cast the void pointer to used to reference the module class to an actual pointer to the class. Use that to call the appropriate handler method. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{interrupt__link_8hpp_a3e3a22e2ba82f3d16ba96591115c6558}\label{interrupt__link_8hpp_a3e3a22e2ba82f3d16ba96591115c6558}} 
+void \mbox{\hyperlink{interrupt__link_8hpp_a3e3a22e2ba82f3d16ba96591115c6558}{main\+Rising\+Edge\+Handler}} (void $\ast$)
+\begin{DoxyCompactList}\small\item\em A function implementation to be assigned to the appropriate callback. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{interrupt__link_8hpp_a800885e4f590b5c1df58d58fb7a72278}\label{interrupt__link_8hpp_a800885e4f590b5c1df58d58fb7a72278}} 
+void \mbox{\hyperlink{interrupt__link_8hpp_a800885e4f590b5c1df58d58fb7a72278}{main\+Falling\+Edge\+Handler}} (void $\ast$)
+\begin{DoxyCompactList}\small\item\em A function implementation to be assigned to the appropriate callback. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{interrupt__link_8hpp_aa9beb9ea0e7461ff1c974c00c61ce337}\label{interrupt__link_8hpp_aa9beb9ea0e7461ff1c974c00c61ce337}} 
+void \mbox{\hyperlink{interrupt__link_8hpp_aa9beb9ea0e7461ff1c974c00c61ce337}{aux\+Rising\+Edge\+Handler}} (void $\ast$)
+\begin{DoxyCompactList}\small\item\em A function implementation to be assigned to the appropriate callback. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{interrupt__link_8hpp_a8982d43f67a0d8482048d41b3c141588}\label{interrupt__link_8hpp_a8982d43f67a0d8482048d41b3c141588}} 
+void \mbox{\hyperlink{interrupt__link_8hpp_a8982d43f67a0d8482048d41b3c141588}{aux\+Falling\+Edge\+Handler}} (void $\ast$)
+\begin{DoxyCompactList}\small\item\em A function implementation to be assigned to the appropriate callback. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{interrupt__link_8hpp_a58d16cc1472f32808b3bf5d970ee75c1}\label{interrupt__link_8hpp_a58d16cc1472f32808b3bf5d970ee75c1}} 
+void \mbox{\hyperlink{interrupt__link_8hpp_a58d16cc1472f32808b3bf5d970ee75c1}{button\+Pressed\+Handler}} (void $\ast$)
+\begin{DoxyCompactList}\small\item\em A function implementation to be assigned to the appropriate callback. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{interrupt__link_8hpp_a4c1d67227d3c1f174f9fb42a84134b96}\label{interrupt__link_8hpp_a4c1d67227d3c1f174f9fb42a84134b96}} 
+void \mbox{\hyperlink{interrupt__link_8hpp_a4c1d67227d3c1f174f9fb42a84134b96}{button\+Released\+Handler}} (void $\ast$)
+\begin{DoxyCompactList}\small\item\em A function implementation to be assigned to the appropriate callback. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{interrupt__link_8hpp_af48fc2f5f3651b35082769db0be3ba15}\label{interrupt__link_8hpp_af48fc2f5f3651b35082769db0be3ba15}} 
+void \mbox{\hyperlink{interrupt__link_8hpp_af48fc2f5f3651b35082769db0be3ba15}{adc\+Conversion\+Complete\+Handler}} (void $\ast$)
+\begin{DoxyCompactList}\small\item\em A function implementation to be assigned to the appropriate callback. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{interrupt__link_8hpp_ac56de29c4d6f9eb5a27dcb2a5ea2555f}\label{interrupt__link_8hpp_ac56de29c4d6f9eb5a27dcb2a5ea2555f}} 
+void \mbox{\hyperlink{interrupt__link_8hpp_ac56de29c4d6f9eb5a27dcb2a5ea2555f}{dac\+Half\+Transfer\+Handler}} (void $\ast$)
+\begin{DoxyCompactList}\small\item\em A function implementation to be assigned to the appropriate callback. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{interrupt__link_8hpp_ae875e53f94fda822dffad10b3339041a}\label{interrupt__link_8hpp_ae875e53f94fda822dffad10b3339041a}} 
+void \mbox{\hyperlink{interrupt__link_8hpp_ae875e53f94fda822dffad10b3339041a}{dac\+Transfer\+Complete\+Handler}} (void $\ast$)
+\begin{DoxyCompactList}\small\item\em A function implementation to be assigned to the appropriate callback. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{interrupt__link_8hpp_a06ab0209e2bcdb09863f3ff9b7db2818}\label{interrupt__link_8hpp_a06ab0209e2bcdb09863f3ff9b7db2818}} 
+void \mbox{\hyperlink{interrupt__link_8hpp_a06ab0209e2bcdb09863f3ff9b7db2818}{dac\+Timer\+Handler}} (void $\ast$)
+\begin{DoxyCompactList}\small\item\em A function implementation to be assigned to the appropriate callback. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{interrupt__link_8hpp_a26d5c7918b67ecc6316c0ed2ed4bbbda}\label{interrupt__link_8hpp_a26d5c7918b67ecc6316c0ed2ed4bbbda}} 
+void \mbox{\hyperlink{interrupt__link_8hpp_a26d5c7918b67ecc6316c0ed2ed4bbbda}{sdaadc\+Conversion\+Complete\+Handler}} (void $\ast$)
+\begin{DoxyCompactList}\small\item\em A function implementation to be assigned to the appropriate callback. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{interrupt__link_8hpp_ad189ffd93a9b7f2f53991c7ce9184c55}\label{interrupt__link_8hpp_ad189ffd93a9b7f2f53991c7ce9184c55}} 
+void \mbox{\hyperlink{interrupt__link_8hpp_ad189ffd93a9b7f2f53991c7ce9184c55}{aux\+Timer1\+Interrupt\+Handler}} (void $\ast$)
+\begin{DoxyCompactList}\small\item\em A function implementation to be assigned to the appropriate callback. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{interrupt__link_8hpp_a3094fce2088448599cbd3ec39a82ce42}\label{interrupt__link_8hpp_a3094fce2088448599cbd3ec39a82ce42}} 
+void \mbox{\hyperlink{interrupt__link_8hpp_a3094fce2088448599cbd3ec39a82ce42}{aux\+Timer2\+Interrupt\+Handler}} (void $\ast$)
+\begin{DoxyCompactList}\small\item\em A function implementation to be assigned to the appropriate callback. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{interrupt__link_8hpp_a4329cba7d9fcbd3e2b1e7dcc277182ce}\label{interrupt__link_8hpp_a4329cba7d9fcbd3e2b1e7dcc277182ce}} 
+void $\ast$ \mbox{\hyperlink{interrupt__link_8hpp_a4329cba7d9fcbd3e2b1e7dcc277182ce}{module\+Pointer}}
+\begin{DoxyCompactList}\small\item\em This is used as an anonymous pointer to the main module class instance so it can be referenced in C code. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\textbf{ }\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{interrupt__link_8hpp_ae9e7fd1235964239101deb79b8b16d47}\label{interrupt__link_8hpp_ae9e7fd1235964239101deb79b8b16d47}} 
+void($\ast$ \mbox{\hyperlink{interrupt__link_8hpp_ae9e7fd1235964239101deb79b8b16d47}{tsc\+Timer\+Callback}} )(void $\ast$)
+\begin{DoxyCompactList}\small\item\em A callback function to allow C code to call methods of the main module class by passing in the module\+Pointer void pointer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{interrupt__link_8hpp_a6ac8ccdf7da9a24e29179238ab754ce2}\label{interrupt__link_8hpp_a6ac8ccdf7da9a24e29179238ab754ce2}} 
+void($\ast$ \mbox{\hyperlink{interrupt__link_8hpp_a6ac8ccdf7da9a24e29179238ab754ce2}{ui\+Timer\+Callback}} )(void $\ast$)
+\begin{DoxyCompactList}\small\item\em A callback function to allow C code to call methods of the main module class by passing in the module\+Pointer void pointer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{interrupt__link_8hpp_ad64798bc70834ab630e2feca0b7852a7}\label{interrupt__link_8hpp_ad64798bc70834ab630e2feca0b7852a7}} 
+void($\ast$ \mbox{\hyperlink{interrupt__link_8hpp_ad64798bc70834ab630e2feca0b7852a7}{main\+Rising\+Edge\+Callback}} )(void $\ast$)
+\begin{DoxyCompactList}\small\item\em A callback function to allow C code to call methods of the main module class by passing in the module\+Pointer void pointer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{interrupt__link_8hpp_a1b5956fd5ab559e67c91133a92937ce1}\label{interrupt__link_8hpp_a1b5956fd5ab559e67c91133a92937ce1}} 
+void($\ast$ \mbox{\hyperlink{interrupt__link_8hpp_a1b5956fd5ab559e67c91133a92937ce1}{main\+Falling\+Edge\+Callback}} )(void $\ast$)
+\begin{DoxyCompactList}\small\item\em A callback function to allow C code to call methods of the main module class by passing in the module\+Pointer void pointer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{interrupt__link_8hpp_a014e072a16f0ec0f2b7570f5c9f477b9}\label{interrupt__link_8hpp_a014e072a16f0ec0f2b7570f5c9f477b9}} 
+void($\ast$ \mbox{\hyperlink{interrupt__link_8hpp_a014e072a16f0ec0f2b7570f5c9f477b9}{aux\+Rising\+Edge\+Callback}} )(void $\ast$)
+\begin{DoxyCompactList}\small\item\em A callback function to allow C code to call methods of the main module class by passing in the module\+Pointer void pointer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{interrupt__link_8hpp_aa89bafff9982f1a1a0fd28ce46b60da0}\label{interrupt__link_8hpp_aa89bafff9982f1a1a0fd28ce46b60da0}} 
+void($\ast$ \mbox{\hyperlink{interrupt__link_8hpp_aa89bafff9982f1a1a0fd28ce46b60da0}{aux\+Falling\+Edge\+Callback}} )(void $\ast$)
+\begin{DoxyCompactList}\small\item\em A callback function to allow C code to call methods of the main module class by passing in the module\+Pointer void pointer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{interrupt__link_8hpp_ae57f62c58f497d57c2e7483e85461879}\label{interrupt__link_8hpp_ae57f62c58f497d57c2e7483e85461879}} 
+void($\ast$ \mbox{\hyperlink{interrupt__link_8hpp_ae57f62c58f497d57c2e7483e85461879}{button\+Pressed\+Callback}} )(void $\ast$)
+\begin{DoxyCompactList}\small\item\em A callback function to allow C code to call methods of the main module class by passing in the module\+Pointer void pointer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{interrupt__link_8hpp_a04c1c6cd35131a75840a1cc359f3f3fd}\label{interrupt__link_8hpp_a04c1c6cd35131a75840a1cc359f3f3fd}} 
+void($\ast$ \mbox{\hyperlink{interrupt__link_8hpp_a04c1c6cd35131a75840a1cc359f3f3fd}{button\+Released\+Callback}} )(void $\ast$)
+\begin{DoxyCompactList}\small\item\em A callback function to allow C code to call methods of the main module class by passing in the module\+Pointer void pointer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{interrupt__link_8hpp_aae6cbab5c4cd4444f346d319af6f53d9}\label{interrupt__link_8hpp_aae6cbab5c4cd4444f346d319af6f53d9}} 
+void($\ast$ \mbox{\hyperlink{interrupt__link_8hpp_aae6cbab5c4cd4444f346d319af6f53d9}{adc\+Conversion\+Complete\+Callback}} )(void $\ast$)
+\begin{DoxyCompactList}\small\item\em A callback function to allow C code to call methods of the main module class by passing in the module\+Pointer void pointer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{interrupt__link_8hpp_a494d573cc5cb562551726f05c67f12f6}\label{interrupt__link_8hpp_a494d573cc5cb562551726f05c67f12f6}} 
+void($\ast$ \mbox{\hyperlink{interrupt__link_8hpp_a494d573cc5cb562551726f05c67f12f6}{dac\+Half\+Transfer\+Callback}} )(void $\ast$)
+\begin{DoxyCompactList}\small\item\em A callback function to allow C code to call methods of the main module class by passing in the module\+Pointer void pointer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{interrupt__link_8hpp_a539cd5c94d1f25071b853d37803cd008}\label{interrupt__link_8hpp_a539cd5c94d1f25071b853d37803cd008}} 
+void($\ast$ \mbox{\hyperlink{interrupt__link_8hpp_a539cd5c94d1f25071b853d37803cd008}{dac\+Transfer\+Complete\+Callback}} )(void $\ast$)
+\begin{DoxyCompactList}\small\item\em A callback function to allow C code to call methods of the main module class by passing in the module\+Pointer void pointer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{interrupt__link_8hpp_a930a339763039fc11d9a88b9e48d893a}\label{interrupt__link_8hpp_a930a339763039fc11d9a88b9e48d893a}} 
+void($\ast$ \mbox{\hyperlink{interrupt__link_8hpp_a930a339763039fc11d9a88b9e48d893a}{dac\+Timer\+Callback}} )(void $\ast$)
+\begin{DoxyCompactList}\small\item\em A callback function to allow C code to call methods of the main module class by passing in the module\+Pointer void pointer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{interrupt__link_8hpp_aa55453b5942b00133cad8b2e5ebad482}\label{interrupt__link_8hpp_aa55453b5942b00133cad8b2e5ebad482}} 
+void($\ast$ \mbox{\hyperlink{interrupt__link_8hpp_aa55453b5942b00133cad8b2e5ebad482}{sdaadc\+Conversion\+Complete\+Callback}} )(void $\ast$)
+\begin{DoxyCompactList}\small\item\em A callback function to allow C code to call methods of the main module class by passing in the module\+Pointer void pointer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{interrupt__link_8hpp_a95e865fe779efc2e946aefc94a8ace29}\label{interrupt__link_8hpp_a95e865fe779efc2e946aefc94a8ace29}} 
+void($\ast$ \mbox{\hyperlink{interrupt__link_8hpp_a95e865fe779efc2e946aefc94a8ace29}{aux\+Timer1\+Interrupt\+Callback}} )(void $\ast$)
+\begin{DoxyCompactList}\small\item\em A callback function to allow C code to call methods of the main module class by passing in the module\+Pointer void pointer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{interrupt__link_8hpp_a34ddf99325f4873c0d4b1e13ceb5c604}\label{interrupt__link_8hpp_a34ddf99325f4873c0d4b1e13ceb5c604}} 
+void($\ast$ \mbox{\hyperlink{interrupt__link_8hpp_a34ddf99325f4873c0d4b1e13ceb5c604}{aux\+Timer2\+Interrupt\+Callback}} )(void $\ast$)
+\begin{DoxyCompactList}\small\item\em A callback function to allow C code to call methods of the main module class by passing in the module\+Pointer void pointer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+
+\subsection{Detailed Description}
+Interrupt handler callback declarations. 
+
+Declare the anonymous callback function pointers and functions that will be assigned to them. 
