@@ -25,6 +25,7 @@ void linkInterrupts(ViaSync * voidPointer) {
 	sdaadcConversionCompleteCallback = &sdaadcConversionCompleteHandler;
 	adcConversionCompleteCallback = &adcConversionCompleteHandler;
 	auxTimer1InterruptCallback = &auxTimer1InterruptHandler;
+	auxTimer2InterruptCallback = &auxTimer2InterruptHandler;
 
 }
 
@@ -99,5 +100,12 @@ void auxTimer1InterruptHandler(void * voidPointer) {
 
 	ViaSync * modulePointer = (ViaSync *) voidPointer;
 	modulePointer->auxTimer1InterruptCallback();
+
+}
+
+void auxTimer2InterruptHandler(void * voidPointer) {
+
+	ViaSync * modulePointer = (ViaSync *) voidPointer;
+	modulePointer->auxTimer2InterruptCallback();
 
 }

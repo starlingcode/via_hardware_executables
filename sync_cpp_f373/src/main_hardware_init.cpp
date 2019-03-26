@@ -52,5 +52,9 @@ void mainHardwareInit(void) {
 	TIM17->PSC = 1000;
 	TIM17->ARR = 2000;
 	__HAL_TIM_ENABLE_IT(&htim17, TIM_IT_UPDATE);
+	// initialize the shB timer
+	TIM18->PSC = 50;
+	TIM18->ARR = 1439;
+	__HAL_TIM_ENABLE_IT(&htim18, TIM_IT_UPDATE);
 
 }
