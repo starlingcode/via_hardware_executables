@@ -1,8 +1,0 @@
-$ cat .gitignore
-old_stuff/
-.DS_Store
-/Debug/
-/Release/
-/html/
-/latex/
-/RemoteSystemsTempFiles/
