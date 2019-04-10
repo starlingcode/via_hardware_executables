@@ -147,7 +147,7 @@ void ViaScanner::transferCompleteCallback(void) {
 
 void ViaScanner::slowConversionCallback(void) {
 
-	controls.updateSlow();
+	controls.updateSlowExtra();
 	scanner.parseControls(&controls);
 
 	uint32_t redLevel = abs(scanner.xInput) >> 4;
