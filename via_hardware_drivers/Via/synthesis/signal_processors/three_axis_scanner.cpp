@@ -127,17 +127,21 @@ inline void ThreeAxisScanner::scanTerrainSum(void) {
 			xSample = getSampleQuinticSplineDeltaValue(xIndexBuffer[writeIndex], zIndex,
 				(uint32_t *) xTable, &xDelta, xInterpolateOff);
 		} else {
-			leftSample = xIndexBuffer[writeIndex] >> 16;
-			xSample = xValueHysterisis(xTableRead[leftSample], leftSample);
-			xDelta = yTableRead[leftSample + 1] - yTableRead[leftSample];
+			phaseFrac = xIndexBuffer[writeIndex] >> 16;
+			morphFrac = zIndex & 0xFFFF;
+			leftSample = fast_15_16_lerp_prediff(xTableRead[phaseFrac], morphFrac);
+			xSample = xValueHysterisis(leftSample, phaseFrac);
+			xDelta = fast_15_16_lerp_prediff(xTableRead[phaseFrac + 1], morphFrac) - leftSample;
 		}
 		if (!yInterpolateOff) {
 			ySample = getSampleQuinticSplineDeltaValue(yIndexBuffer[writeIndex], zIndex,
 				(uint32_t *) yTable, &yDelta, yInterpolateOff);
 		} else {
-			leftSample = yIndexBuffer[writeIndex] >> 16;
-			ySample = yValueHysterisis(yTableRead[leftSample], leftSample);
-			yDelta = yTableRead[leftSample + 1] - yTableRead[leftSample];
+			phaseFrac = yIndexBuffer[writeIndex] >> 16;
+			morphFrac = zIndex & 0xFFFF;
+			leftSample = fast_15_16_lerp_prediff(yTableRead[phaseFrac], morphFrac);
+			ySample = yValueHysterisis(leftSample, phaseFrac);
+			yDelta = fast_15_16_lerp_prediff(yTableRead[phaseFrac + 1], morphFrac) - leftSample;
 		}
 
 		xIndexAtLogic = xIndexBuffer[writeIndex] >> 16;
@@ -234,10 +238,26 @@ inline void ThreeAxisScanner::scanTerrainMultiply(void) {
 
 	if (oversample == 0) {
 
-		xSample = getSampleQuinticSplineDeltaValue(xIndexBuffer[writeIndex], zIndex,
+		if (!xInterpolateOff) {
+			xSample = getSampleQuinticSplineDeltaValue(xIndexBuffer[writeIndex], zIndex,
 				(uint32_t *) xTable, &xDelta, xInterpolateOff);
-		ySample = getSampleQuinticSplineDeltaValue(yIndexBuffer[writeIndex], zIndex,
+		} else {
+			phaseFrac = xIndexBuffer[writeIndex] >> 16;
+			morphFrac = zIndex & 0xFFFF;
+			leftSample = fast_15_16_lerp_prediff(xTableRead[phaseFrac], morphFrac);
+			xSample = xValueHysterisis(leftSample, phaseFrac);
+			xDelta = fast_15_16_lerp_prediff(xTableRead[phaseFrac + 1], morphFrac) - leftSample;
+		}
+		if (!yInterpolateOff) {
+			ySample = getSampleQuinticSplineDeltaValue(yIndexBuffer[writeIndex], zIndex,
 				(uint32_t *) yTable, &yDelta, yInterpolateOff);
+		} else {
+			phaseFrac = yIndexBuffer[writeIndex] >> 16;
+			morphFrac = zIndex & 0xFFFF;
+			leftSample = fast_15_16_lerp_prediff(yTableRead[phaseFrac], morphFrac);
+			ySample = yValueHysterisis(leftSample, phaseFrac);
+			yDelta = fast_15_16_lerp_prediff(yTableRead[phaseFrac + 1], morphFrac) - leftSample;
+		}
 
 		xIndexAtLogic = xIndexBuffer[writeIndex] >> 16;
 		yIndexAtLogic = yIndexBuffer[writeIndex] >> 16;
@@ -334,10 +354,26 @@ inline void ThreeAxisScanner::scanTerrainDifference(void) {
 
 	if (oversample == 0) {
 
-		xSample = getSampleQuinticSplineDeltaValue(xIndexBuffer[writeIndex], zIndex,
+		if (!xInterpolateOff) {
+			xSample = getSampleQuinticSplineDeltaValue(xIndexBuffer[writeIndex], zIndex,
 				(uint32_t *) xTable, &xDelta, xInterpolateOff);
-		ySample = getSampleQuinticSplineDeltaValue(yIndexBuffer[writeIndex], zIndex,
+		} else {
+			phaseFrac = xIndexBuffer[writeIndex] >> 16;
+			morphFrac = zIndex & 0xFFFF;
+			leftSample = fast_15_16_lerp_prediff(xTableRead[phaseFrac], morphFrac);
+			xSample = xValueHysterisis(leftSample, phaseFrac);
+			xDelta = fast_15_16_lerp_prediff(xTableRead[phaseFrac + 1], morphFrac) - leftSample;
+		}
+		if (!yInterpolateOff) {
+			ySample = getSampleQuinticSplineDeltaValue(yIndexBuffer[writeIndex], zIndex,
 				(uint32_t *) yTable, &yDelta, yInterpolateOff);
+		} else {
+			phaseFrac = yIndexBuffer[writeIndex] >> 16;
+			morphFrac = zIndex & 0xFFFF;
+			leftSample = fast_15_16_lerp_prediff(yTableRead[phaseFrac], morphFrac);
+			ySample = yValueHysterisis(leftSample, phaseFrac);
+			yDelta = fast_15_16_lerp_prediff(yTableRead[phaseFrac + 1], morphFrac) - leftSample;
+		}
 
 		xIndexAtLogic = xIndexBuffer[writeIndex] >> 16;
 		yIndexAtLogic = yIndexBuffer[writeIndex] >> 16;
@@ -434,10 +470,26 @@ inline void ThreeAxisScanner::scanTerrainLighten(void) {
 
 	if (oversample == 0) {
 
-		xSample = getSampleQuinticSplineDeltaValue(xIndexBuffer[writeIndex], zIndex,
+		if (!xInterpolateOff) {
+			xSample = getSampleQuinticSplineDeltaValue(xIndexBuffer[writeIndex], zIndex,
 				(uint32_t *) xTable, &xDelta, xInterpolateOff);
-		ySample = getSampleQuinticSplineDeltaValue(yIndexBuffer[writeIndex], zIndex,
+		} else {
+			phaseFrac = xIndexBuffer[writeIndex] >> 16;
+			morphFrac = zIndex & 0xFFFF;
+			leftSample = fast_15_16_lerp_prediff(xTableRead[phaseFrac], morphFrac);
+			xSample = xValueHysterisis(leftSample, phaseFrac);
+			xDelta = fast_15_16_lerp_prediff(xTableRead[phaseFrac + 1], morphFrac) - leftSample;
+		}
+		if (!yInterpolateOff) {
+			ySample = getSampleQuinticSplineDeltaValue(yIndexBuffer[writeIndex], zIndex,
 				(uint32_t *) yTable, &yDelta, yInterpolateOff);
+		} else {
+			phaseFrac = yIndexBuffer[writeIndex] >> 16;
+			morphFrac = zIndex & 0xFFFF;
+			leftSample = fast_15_16_lerp_prediff(yTableRead[phaseFrac], morphFrac);
+			ySample = yValueHysterisis(leftSample, phaseFrac);
+			yDelta = fast_15_16_lerp_prediff(yTableRead[phaseFrac + 1], morphFrac) - leftSample;
+		}
 
 		xIndexAtLogic = xIndexBuffer[writeIndex] >> 16;
 		yIndexAtLogic = yIndexBuffer[writeIndex] >> 16;
