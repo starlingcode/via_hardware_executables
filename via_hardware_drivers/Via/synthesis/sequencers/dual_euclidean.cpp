@@ -53,39 +53,27 @@ void DualEuclidean::updateLogicOutput(void) {
 #define __XOR 2
 #define __NOR 3
 
+
 	switch (auxLogicMode) {
 	case __OR:
-		if (aOutput || bOutput) {
-			logicOutput = 1;
-		} else {
-			logicOutput = 0;
-		}
+		logicOutput = (aOutput || bOutput);
 		break;
 	case __AND:
-		if (aOutput && bOutput) {
-			logicOutput = 1;
-		} else {
-			logicOutput = 0;
-		}
+		logicOutput = (aOutput && bOutput);
 		break;
 	case __XOR:
-		if (aOutput ^ bOutput) {
-			logicOutput = 1;
-		} else {
-			logicOutput = 0;
-		}
+		logicOutput = (aOutput ^ bOutput);
 		break;
 	case __NOR:
-		// nand instead?
-		if (!aOutput && !bOutput) {
-			logicOutput = 1;
-		} else {
-			logicOutput = 0;
-		}
+		logicOutput = (!aOutput && !bOutput);
 		break;
 	}
 
-	logicOutput &= virtualGateHigh;
+	if (clockOn) {
+		logicOutput &= virtualGateHigh;
+	} else {
+		logicOutput &= mainGateHigh;
+	}
 
 }
 
@@ -126,15 +114,18 @@ void DualEuclidean::parseControls(ViaControls * controls,
 
 	if (modulateMultiplier) {
 
+		int32_t multIndex;
+
 		if (cv2Sample >= 2048) {
-			multiplier = (fix16_lerp(controls->knob2Value, 4095,
+			multIndex = (fix16_lerp(controls->knob2Value, 4095,
 					(cv2Sample - 2048) << 5)) >> 9;
 		} else {
-			multiplier = (fix16_lerp(0, controls->knob2Value,
+			multIndex = (fix16_lerp(0, controls->knob2Value,
 					cv2Sample << 5)) >> 9;
 		}
 		//0-7 -> 1-8
-		multiplier = multipliers[multiplier];
+		multiplier = multipliers[multIndex];
+		multReset = multiplierResets[multIndex];
 
 	} else if (shuffleOn) {
 
@@ -177,6 +168,10 @@ void DualEuclidean::processMainRisingEdge(void) {
 
 	advanceSequencerB();
 
+	mainGateHigh = 1;
+
+	multiplierCount = 0;
+
 	if (skipClock & clockOn) {
 		skipClock = 0;
 	} else {
@@ -207,6 +202,8 @@ void DualEuclidean::processMainRisingEdge(void) {
 		TIM2->CNT = 0;
 		TIM2->EGR = TIM_EGR_UG;
 		shuffledStep = 1;
+	} else {
+		periodCount += TIM2->CNT;
 	}
 
 	skipClock = 1;
@@ -237,7 +234,9 @@ void DualEuclidean::processInternalRisingEdge(void) {
 
 	// update the complex sequencer, s&h, gates, leds
 	advanceSequencerA();
-	updateLogicOutput();
+	if (multiplierCount < multiplier) {
+		updateLogicOutput();
+	}
 
 	if (sampleA) {
 		shASignal = (!aOutput);
@@ -291,6 +290,7 @@ void DualEuclidean::processMainFallingEdge(void) {
 //	}
 
 	bOutput = 0;
+	mainGateHigh = 1;
 	updateLogicOutput();
 
 }
@@ -304,6 +304,7 @@ void DualEuclidean::processInternalFallingEdge(void) {
 	aOutput = 0;
 	shASignal = sampleA;
 	updateLogicOutput();
+	multiplierCount += 2;
 
 
 	// disable the gate timer
