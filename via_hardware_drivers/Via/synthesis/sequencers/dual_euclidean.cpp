@@ -55,11 +55,11 @@ void DualEuclidean::updateLogicOutput(void) {
 
 
 	switch (auxLogicMode) {
-	case __OR:
-		logicOutput = (aOutput || bOutput);
-		break;
 	case __AND:
 		logicOutput = (aOutput && bOutput);
+		break;
+	case __OR:
+		logicOutput = (aOutput || bOutput);
 		break;
 	case __XOR:
 		logicOutput = (aOutput ^ bOutput);
@@ -69,6 +69,7 @@ void DualEuclidean::updateLogicOutput(void) {
 		break;
 	}
 
+	// ??? (I think this is ok)
 	if (clockOn) {
 		logicOutput &= virtualGateHigh;
 	} else {
@@ -125,7 +126,10 @@ void DualEuclidean::parseControls(ViaControls * controls,
 		}
 		//0-7 -> 1-8
 		multiplier = multipliers[multIndex];
+		// ???
 		multReset = multiplierResets[multIndex];
+
+		perStepReset = perStepResets[multIndex];
 
 	} else if (shuffleOn) {
 
@@ -170,11 +174,14 @@ void DualEuclidean::processMainRisingEdge(void) {
 
 	mainGateHigh = 1;
 
-	multiplierCount = 0;
-
 	if (skipClock & clockOn) {
 		skipClock = 0;
+		// ???
+		multiplierCount -= multiplierCount * perStepReset;
 	} else {
+		// ???
+		multiplierCount = 0;
+
 #ifdef BUILD_VIRTUAL
 	periodCount = virtualTimer1Count;
 	virtualTimer1Count = 0;
@@ -192,24 +199,23 @@ void DualEuclidean::processMainRisingEdge(void) {
 #ifdef BUILD_F373
 	periodCount = TIM5->CNT;
 	TIM5->CNT = 0;
+	if (!clockOn || TIM2->CNT > (periodCount >> 8)) {
 
-	if (!clockOn || TIM2->CNT > (clockPeriod >> 8)) {
-
-		TIM2->PSC = divider-1;
 		TIM17->CR1 &= ~TIM_CR1_CEN;
 		TIM17->CNT = 0;
 
-		TIM2->CNT = 0;
+		TIM2->CNT = 1;
 		TIM2->EGR = TIM_EGR_UG;
 		shuffledStep = 1;
-	} else {
-		periodCount += TIM2->CNT;
 	}
 
 	skipClock = 1;
 
 	}
-	updateLogicOutput();
+	// ???
+	if (clockOn) {
+		updateLogicOutput();
+	}
 #endif
 
 	// update the simple sequencer sample and hold control
@@ -234,7 +240,8 @@ void DualEuclidean::processInternalRisingEdge(void) {
 
 	// update the complex sequencer, s&h, gates, leds
 	advanceSequencerA();
-	if (multiplierCount < multiplier) {
+	// ???
+	if (multiplierCount < multReset) {
 		updateLogicOutput();
 	}
 
@@ -290,8 +297,10 @@ void DualEuclidean::processMainFallingEdge(void) {
 //	}
 
 	bOutput = 0;
-	mainGateHigh = 1;
-	updateLogicOutput();
+	mainGateHigh = 0;
+	if (!clockOn) {
+		updateLogicOutput();
+	}
 
 }
 
@@ -303,7 +312,10 @@ void DualEuclidean::processInternalFallingEdge(void) {
 	virtualGateHigh = 0;
 	aOutput = 0;
 	shASignal = sampleA;
-	updateLogicOutput();
+	if (clockOn) {
+		updateLogicOutput();
+	}
+	// ???
 	multiplierCount += 2;
 
 

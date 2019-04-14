@@ -60,7 +60,9 @@ public:
 	uint32_t multiplier = 1;
 	uint32_t multReset = 0;
 	uint32_t divider = 1;
+	uint32_t perStepReset = 0;
 	uint32_t clockPeriod = 0;
+	uint32_t skipA;
 	uint32_t shuffleOn = 0;
 	uint32_t shuffle = 32767;
 	uint32_t shuffleDelay = 0;
@@ -77,7 +79,8 @@ public:
 	int32_t cv3Offset = 0;
 
 	int32_t multipliers[8] = {1, 2, 3, 4, 6, 8, 12, 16};
-	int32_t multiplierResets[8] = {0, 0, 2, 4, 6, 8, 12, 16};
+	int32_t multiplierResets[8] = {0, 0, 6, 4, 6, 8, 12, 16};
+	int32_t perStepResets[8] = {0, 0, 0, 1, 1, 1, 1, 1};
 
 	// "inputs"
 	uint32_t aCounter = 0;
