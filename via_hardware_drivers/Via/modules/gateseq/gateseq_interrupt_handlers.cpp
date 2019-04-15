@@ -26,7 +26,9 @@ void ViaGateseq::mainRisingEdgeCallback() {
 		auxTimer1InterruptCallback();
 		sequencer.processSeq1 = 0;
 	}
-	sequencer.updateLogicOutput();
+	if (sequencer.clockOn) {
+		sequencer.updateLogicOutput();
+	}
 
 #endif
 
