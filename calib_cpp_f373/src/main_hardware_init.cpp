@@ -48,6 +48,7 @@ void mainHardwareInit(void) {
 	// Initialize the timer that is used for touch sensor press timeout.
 	__HAL_TIM_ENABLE_IT(&htim7, TIM_IT_UPDATE);
 
+	TIM16->ARR = 5000;
 	/// Initialize the trigger debounce timer.
 	__HAL_TIM_ENABLE_IT(&htim16, TIM_IT_UPDATE);
 	/// Initialize the aux timers.
