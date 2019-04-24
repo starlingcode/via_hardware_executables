@@ -6,11 +6,11 @@
  *
  */
 
+#include <osc.hpp>
 #include "interrupt_link.hpp"
-#include "template.hpp"
 
 /// Assign the callback function pointers to the wrapper functions and the pointer to the module class to the void pointer modulePointer.
-void linkInterrupts(ViaTemplate * voidPointer) {
+void linkInterrupts(ViaOsc * voidPointer) {
 
 	modulePointer = (void *) voidPointer;
 
@@ -35,61 +35,61 @@ void linkInterrupts(ViaTemplate * voidPointer) {
 /// Cast the void pointer to used to reference the module class to an actual pointer to the class. Use that to call the appropriate handler method.
 void uiTimerHandler(void * voidPointer) {
 
-	ViaTemplate * modulePointer = (ViaTemplate *) voidPointer;
+	ViaOsc * modulePointer = (ViaOsc *) voidPointer;
 	modulePointer->ui_dispatch(TIMEOUT_SIG);
 
 }
 void mainRisingEdgeHandler(void * voidPointer) {
 
-	ViaTemplate * modulePointer = (ViaTemplate *) voidPointer;
+	ViaOsc * modulePointer = (ViaOsc *) voidPointer;
 	modulePointer->mainRisingEdgeCallback();
 
 }
 void mainFallingEdgeHandler(void * voidPointer) {
 
-	ViaTemplate * modulePointer = (ViaTemplate *) voidPointer;
+	ViaOsc * modulePointer = (ViaOsc *) voidPointer;
 	modulePointer->mainFallingEdgeCallback();
 
 }
 void auxRisingEdgeHandler(void * voidPointer) {
 
-	ViaTemplate * modulePointer = (ViaTemplate *) voidPointer;
+	ViaOsc * modulePointer = (ViaOsc *) voidPointer;
 	modulePointer->auxRisingEdgeCallback();
 
 }
 void auxFallingEdgeHandler(void * voidPointer) {
 
-	ViaTemplate * modulePointer = (ViaTemplate *) voidPointer;
+	ViaOsc * modulePointer = (ViaOsc *) voidPointer;
 	modulePointer->auxFallingEdgeCallback();
 
 }
 void buttonPressedHandler(void * voidPointer) {
 
-	ViaTemplate * modulePointer = (ViaTemplate *) voidPointer;
+	ViaOsc * modulePointer = (ViaOsc *) voidPointer;
 	modulePointer->buttonPressedCallback();
 
 }
 void buttonReleasedHandler(void * voidPointer) {
 
-	ViaTemplate * modulePointer = (ViaTemplate *) voidPointer;
+	ViaOsc * modulePointer = (ViaOsc *) voidPointer;
 	modulePointer->buttonReleasedCallback();
 
 }
 void adcConversionCompleteHandler(void * voidPointer) {
 
-	ViaTemplate * modulePointer = (ViaTemplate *) voidPointer;
+	ViaOsc * modulePointer = (ViaOsc *) voidPointer;
 	modulePointer->slowConversionCallback();
 
 }
 void dacHalfTransferHandler(void * voidPointer) {
 
-	ViaTemplate * modulePointer = (ViaTemplate *) voidPointer;
+	ViaOsc * modulePointer = (ViaOsc *) voidPointer;
 	modulePointer->halfTransferCallback();
 
 }
 void dacTransferCompleteHandler(void * voidPointer) {
 
-	ViaTemplate * modulePointer = (ViaTemplate *) voidPointer;
+	ViaOsc * modulePointer = (ViaOsc *) voidPointer;
 	modulePointer->transferCompleteCallback();
 
 }
@@ -102,14 +102,14 @@ void sdaadcConversionCompleteHandler(void *) {
 
 void auxTimer1InterruptHandler(void * voidPointer) {
 
-	ViaTemplate * modulePointer = (ViaTemplate *) voidPointer;
+	ViaOsc * modulePointer = (ViaOsc *) voidPointer;
 	modulePointer->auxTimer1InterruptCallback();
 
 }
 
 void auxTimer2InterruptHandler(void * voidPointer) {
 
-	ViaTemplate * modulePointer = (ViaTemplate *) voidPointer;
+	ViaOsc * modulePointer = (ViaOsc *) voidPointer;
 	modulePointer->auxTimer2InterruptCallback();
 
 }
