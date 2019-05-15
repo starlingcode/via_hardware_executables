@@ -31,7 +31,7 @@ void mainHardwareInit(void) {
 	HAL_TIM_PWM_Start(&htim5, TIM_CHANNEL_1);
 
 	/// Set the priority and enable an interrupt line to be used by the trigger button input and aux trigger.
-	HAL_NVIC_SetPriority(EXTI1_IRQn, 3, 0);
+	HAL_NVIC_SetPriority(EXTI1_IRQn, 1, 2);
 	HAL_NVIC_EnableIRQ(EXTI1_IRQn);
 	HAL_NVIC_SetPriority(EXTI15_10_IRQn, 1, 1);
 	HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
