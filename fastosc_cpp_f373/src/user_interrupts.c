@@ -11,6 +11,8 @@
 #include "stm32f3xx_it.h"
 #include "interrupt_link.hpp"
 
+#define PROFILE_ON
+
 /// Flag to enforce a debounce timeout for the push button
 int triggerDebounce;
 
@@ -41,8 +43,14 @@ void TIM12_IRQHandler(void)
 {
 
 	if (TRIGGER_RISING_EDGE) {
+#ifdef PROFILE_ON
+	LOGICA_HIGH;
+#endif
 		(*mainRisingEdgeCallback)(modulePointer);
 	} else {
+#ifdef PROFILE_ON
+	LOGICA_LOW;
+#endif
 		(*mainFallingEdgeCallback)(modulePointer);
 	}
 
@@ -178,7 +186,9 @@ void DMA1_Channel1_IRQHandler(void)
 /// Dac transfer complete event handler, inspect the DMA control register to determine if half transfer or full transfer.
 void DMA1_Channel5_IRQHandler(void)
 {
+#ifdef PROFILE_ON
 	EXPAND_LOGIC_HIGH;
+#endif
 	if ((DMA1->ISR & (DMA_FLAG_HT1 << 16)) != 0) {
 		DMA1->IFCR = DMA_FLAG_HT1 << 16;
 		(*dacHalfTransferCallback)(modulePointer);
@@ -186,7 +196,9 @@ void DMA1_Channel5_IRQHandler(void)
 		DMA1->IFCR = DMA_FLAG_TC1 << 16;
 		(*dacTransferCompleteCallback)(modulePointer);
 	}
+#ifdef PROFILE_ON
 	EXPAND_LOGIC_LOW;
+#endif
 
 }
 
