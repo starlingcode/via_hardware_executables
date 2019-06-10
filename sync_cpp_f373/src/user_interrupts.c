@@ -8,7 +8,8 @@
 #define LOGICA_LOW GPIOC->BSRR = (uint32_t)GPIO_PIN_13;
 
 
-int triggerDebounce;
+int triggerDebounce = 0;
+int buttonPressed = 1;
 
 #ifdef __cplusplus
 extern "C" {
@@ -64,21 +65,18 @@ void EXTI15_10_IRQHandler(void)
 void EXTI1_IRQHandler(void)
 {
 
-	if (EXPANDER_BUTTON_PRESSED) {
-		if (!triggerDebounce) {
-			//uiDispatch(EXPAND_SW_ON_SIG);
-			triggerDebounce = 1;
-			__HAL_TIM_ENABLE(&htim16);
+	if (!triggerDebounce) {
+		triggerDebounce = 1;
+		__HAL_TIM_ENABLE(&htim16);
+		if (!buttonPressed) {
 			(*buttonPressedCallback)(modulePointer);
-		}
-	} else { //falling edge
-		if (!triggerDebounce) {
-			//uiDispatch(EXPAND_SW_OFF_SIG);
-			triggerDebounce = 1;
-			__HAL_TIM_ENABLE(&htim16);
+			buttonPressed = 1;
+		} else {
+			buttonPressed = 0;
 			(*buttonReleasedCallback)(modulePointer);
 		}
 	}
+
 
 	HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_1);
 
@@ -97,7 +95,11 @@ void TIM16_IRQHandler(void)
 
 	triggerDebounce = 0;
 
-	if (!EXPANDER_BUTTON_PRESSED) {
+	if (!buttonPressed && EXPANDER_BUTTON_PRESSED) {
+		(*buttonPressedCallback)(modulePointer);
+		buttonPressed = 1;
+	} else if (buttonPressed && !EXPANDER_BUTTON_PRESSED) {
+		buttonPressed = 0;
 		(*buttonReleasedCallback)(modulePointer);
 	}
 
