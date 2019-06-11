@@ -166,7 +166,6 @@ void TIM7_IRQHandler(void)
 void DMA1_Channel1_IRQHandler(void)
 {
 
-	//EXPAND_LOGIC_HIGH
 
 
 	//minimal interrupt handler for circular buffer
@@ -184,7 +183,6 @@ void DMA1_Channel1_IRQHandler(void)
 
 void DMA1_Channel5_IRQHandler(void)
 {
-
 	if ((DMA1->ISR & (DMA_FLAG_HT1 << 16)) != 0) {
 		DMA1->IFCR = DMA_FLAG_HT1 << 16;
 		(*dacHalfTransferCallback)(modulePointer);
@@ -192,7 +190,6 @@ void DMA1_Channel5_IRQHandler(void)
 		DMA1->IFCR = DMA_FLAG_TC1 << 16;
 		(*dacTransferCompleteCallback)(modulePointer);
 	}
-
 }
 
 #ifdef __cplusplus

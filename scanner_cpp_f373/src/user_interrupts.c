@@ -206,8 +206,6 @@ void DMA2_Channel4_IRQHandler(void)
 
 void DMA1_Channel5_IRQHandler(void)
 {
-	//EXPAND_LOGIC_HIGH
-
 	if ((DMA1->ISR & (DMA_FLAG_HT1 << 16)) != 0) {
 		DMA1->IFCR = DMA_FLAG_HT1 << 16;
 		(*dacHalfTransferCallback)(modulePointer);
@@ -215,8 +213,6 @@ void DMA1_Channel5_IRQHandler(void)
 		DMA1->IFCR = DMA_FLAG_TC1 << 16;
 		(*dacTransferCompleteCallback)(modulePointer);
 	}
-
-	//EXPAND_LOGIC_LOW
 
 }
 
