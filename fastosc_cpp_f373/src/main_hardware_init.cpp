@@ -36,6 +36,7 @@ void mainHardwareInit(void) {
 	HAL_NVIC_SetPriority(EXTI15_10_IRQn, 1, 0);
 	HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
 
+	HAL_NVIC_SetPriority(TIM12_IRQn, 0, 1);
 	HAL_NVIC_SetPriority(DMA1_Channel5_IRQn, 0, 0);
 
 	/// Initialize the timer that is used to detect rising and falling edges at the trigger input.

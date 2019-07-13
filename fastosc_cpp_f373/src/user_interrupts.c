@@ -173,6 +173,10 @@ void TIM7_IRQHandler(void)
 void DMA1_Channel1_IRQHandler(void)
 {
 
+#ifdef PROFILE_ON
+	EXPAND_LOGIC_HIGH;
+#endif
+
 	// minimal interrupt handler for circular buffer
 	if ((DMA1->ISR & (DMA_FLAG_HT1)) != 0) {
 		DMA1->IFCR = DMA_FLAG_HT1;
@@ -181,14 +185,16 @@ void DMA1_Channel1_IRQHandler(void)
 		(*adcConversionCompleteCallback)(modulePointer);
 	}
 
+#ifdef PROFILE_ON
+	EXPAND_LOGIC_LOW;
+#endif
+
 }
 
 /// Dac transfer complete event handler, inspect the DMA control register to determine if half transfer or full transfer.
 void DMA1_Channel5_IRQHandler(void)
 {
-#ifdef PROFILE_ON
-	EXPAND_LOGIC_HIGH;
-#endif
+
 	if ((DMA1->ISR & (DMA_FLAG_HT1 << 16)) != 0) {
 		DMA1->IFCR = DMA_FLAG_HT1 << 16;
 		(*dacHalfTransferCallback)(modulePointer);
@@ -196,9 +202,7 @@ void DMA1_Channel5_IRQHandler(void)
 		DMA1->IFCR = DMA_FLAG_TC1 << 16;
 		(*dacTransferCompleteCallback)(modulePointer);
 	}
-#ifdef PROFILE_ON
-	EXPAND_LOGIC_LOW;
-#endif
+
 
 }
 
