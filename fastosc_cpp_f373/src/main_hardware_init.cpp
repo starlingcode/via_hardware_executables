@@ -33,10 +33,11 @@ void mainHardwareInit(void) {
 	/// Set the priority and enable an interrupt line to be used by the trigger button input and aux trigger.
 	HAL_NVIC_SetPriority(EXTI1_IRQn, 3, 0);
 	HAL_NVIC_EnableIRQ(EXTI1_IRQn);
-	HAL_NVIC_SetPriority(EXTI15_10_IRQn, 1, 0);
+	HAL_NVIC_SetPriority(EXTI15_10_IRQn, 1, 1);
 	HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
 
-	HAL_NVIC_SetPriority(TIM12_IRQn, 0, 1);
+	HAL_NVIC_SetPriority(SysTick_IRQn, 3, 1);
+	HAL_NVIC_SetPriority(TIM12_IRQn, 0, 3);
 	HAL_NVIC_SetPriority(DMA1_Channel5_IRQn, 0, 0);
 
 	/// Initialize the timer that is used to detect rising and falling edges at the trigger input.
