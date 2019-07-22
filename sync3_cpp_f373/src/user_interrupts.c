@@ -179,7 +179,7 @@ void DMA1_Channel1_IRQHandler(void)
 /// Dac transfer complete event handler, inspect the DMA control register to determine if half transfer or full transfer.
 void DMA1_Channel5_IRQHandler(void)
 {
-	EXPAND_LOGIC_HIGH;
+//	EXPAND_LOGIC_HIGH;
 	if ((DMA1->ISR & (DMA_FLAG_HT1 << 16)) != 0) {
 		DMA1->IFCR = DMA_FLAG_HT1 << 16;
 		(*dacHalfTransferCallback)(modulePointer);
@@ -187,7 +187,7 @@ void DMA1_Channel5_IRQHandler(void)
 		DMA1->IFCR = DMA_FLAG_TC1 << 16;
 		(*dacTransferCompleteCallback)(modulePointer);
 	}
-	EXPAND_LOGIC_LOW;
+//	EXPAND_LOGIC_LOW;
 
 }
 

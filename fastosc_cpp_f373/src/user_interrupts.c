@@ -13,8 +13,8 @@
 
 #define PROFILE_ON
 
-/// Flag to enforce a debounce timeout for the push button
-int triggerDebounce;
+int triggerDebounce = 0;
+int buttonPressed = 1;
 
 #define EXPAND_LOGIC_HIGH GPIOA->BRR = (uint32_t)GPIO_PIN_12;
 #define EXPAND_LOGIC_LOW GPIOA->BSRR = (uint32_t)GPIO_PIN_12;
@@ -76,23 +76,18 @@ void EXTI15_10_IRQHandler(void)
 void EXTI1_IRQHandler(void)
 {
 
-	/** If the button has been pressed and the debounce flag is not active, set the debounce timer, raise the flag, and call the handler. Pass if debounce flag is active. */
-	if (EXPANDER_BUTTON_PRESSED) {
-		if (!triggerDebounce) {
-			//uiDispatch(EXPAND_SW_ON_SIG);
-			triggerDebounce = 1;
-			__HAL_TIM_ENABLE(&htim16);
+	if (!triggerDebounce) {
+		triggerDebounce = 1;
+		__HAL_TIM_ENABLE(&htim16);
+		if (!buttonPressed) {
 			(*buttonPressedCallback)(modulePointer);
-		}
-	/** If the button has been released and the debounce flag is not active, set the debounce timer, raise the flag, and call the handler. Pass if debounce flag is active. */
-	} else { //falling edge
-		if (!triggerDebounce) {
-			//uiDispatch(EXPAND_SW_OFF_SIG);
-			triggerDebounce = 1;
-			__HAL_TIM_ENABLE(&htim16);
+			buttonPressed = 1;
+		} else {
+			buttonPressed = 0;
 			(*buttonReleasedCallback)(modulePointer);
 		}
 	}
+
 
 	HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_1);
 
@@ -110,7 +105,11 @@ void TIM16_IRQHandler(void)
 
 	triggerDebounce = 0;
 
-	if (!EXPANDER_BUTTON_PRESSED) {
+	if (!buttonPressed && EXPANDER_BUTTON_PRESSED) {
+		(*buttonPressedCallback)(modulePointer);
+		buttonPressed = 1;
+	} else if (buttonPressed && !EXPANDER_BUTTON_PRESSED) {
+		buttonPressed = 0;
 		(*buttonReleasedCallback)(modulePointer);
 	}
 
