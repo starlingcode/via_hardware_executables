@@ -11,7 +11,7 @@
 #include "stm32f3xx_it.h"
 #include "interrupt_link.hpp"
 
-#define PROFILE_ON
+//#define PROFILE_ON
 
 int triggerDebounce = 0;
 int buttonPressed = 1;
