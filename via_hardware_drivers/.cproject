@@ -121,10 +121,10 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="Via/ui|Via/synthesis|Via/modules|Via/io|calib|scanner|ui|synthesis|stm32f373|Drivers|modules|io" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="Via/modules|Drivers|io|ui|modules|stm32f373|Via/synthesis|calib|synthesis|Via/ui|Via/io|scanner" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Drivers"/>
 						<entry flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="Via/io"/>
-						<entry flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="Via/modules"/>
+						<entry excluding="fastosc/sinebeat_ui_implementation.cpp|fastosc/sinebeat_helpers.cpp" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="Via/modules"/>
 						<entry flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="Via/synthesis"/>
 						<entry flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="Via/ui"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="stm32f373"/>
@@ -253,10 +253,10 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="Via/ui|Via/synthesis|Via/modules|Via/io|calib|scanner|ui|synthesis|stm32f373|Drivers|modules|io" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="Via/modules|Drivers|io|ui|modules|stm32f373|Via/synthesis|calib|synthesis|Via/ui|Via/io|scanner" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Drivers"/>
 						<entry flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="Via/io"/>
-						<entry flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="Via/modules"/>
+						<entry excluding="fastosc/sinebeat_ui_implementation.cpp|fastosc/sinebeat_helpers.cpp" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="Via/modules"/>
 						<entry flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="Via/synthesis"/>
 						<entry flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="Via/ui"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="stm32f373"/>

@@ -8,7 +8,8 @@
 #define EXPAND_LOGIC_LOW GPIOA->BSRR = (uint32_t)GPIO_PIN_12;
 
 
-int triggerDebounce;
+int triggerDebounce = 0;
+int buttonPressed = 1;
 
 #ifdef __cplusplus
 extern "C" {
@@ -63,21 +64,18 @@ void EXTI15_10_IRQHandler(void)
 void EXTI1_IRQHandler(void)
 {
 
-	if (EXPANDER_BUTTON_PRESSED) {
-		if (!triggerDebounce) {
-			//uiDispatch(EXPAND_SW_ON_SIG);
-			triggerDebounce = 1;
-			__HAL_TIM_ENABLE(&htim16);
+	if (!triggerDebounce) {
+		triggerDebounce = 1;
+		__HAL_TIM_ENABLE(&htim16);
+		if (!buttonPressed) {
 			(*buttonPressedCallback)(modulePointer);
-		}
-	} else { //falling edge
-		if (!triggerDebounce) {
-			//uiDispatch(EXPAND_SW_OFF_SIG);
-			triggerDebounce = 1;
-			__HAL_TIM_ENABLE(&htim16);
+			buttonPressed = 1;
+		} else {
+			buttonPressed = 0;
 			(*buttonReleasedCallback)(modulePointer);
 		}
 	}
+
 
 	HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_1);
 
@@ -96,7 +94,11 @@ void TIM16_IRQHandler(void)
 
 	triggerDebounce = 0;
 
-	if (!EXPANDER_BUTTON_PRESSED) {
+	if (!buttonPressed && EXPANDER_BUTTON_PRESSED) {
+		(*buttonPressedCallback)(modulePointer);
+		buttonPressed = 1;
+	} else if (buttonPressed && !EXPANDER_BUTTON_PRESSED) {
+		buttonPressed = 0;
 		(*buttonReleasedCallback)(modulePointer);
 	}
 
@@ -204,8 +206,6 @@ void DMA2_Channel4_IRQHandler(void)
 
 void DMA1_Channel5_IRQHandler(void)
 {
-	//EXPAND_LOGIC_HIGH
-
 	if ((DMA1->ISR & (DMA_FLAG_HT1 << 16)) != 0) {
 		DMA1->IFCR = DMA_FLAG_HT1 << 16;
 		(*dacHalfTransferCallback)(modulePointer);
@@ -213,8 +213,6 @@ void DMA1_Channel5_IRQHandler(void)
 		DMA1->IFCR = DMA_FLAG_TC1 << 16;
 		(*dacTransferCompleteCallback)(modulePointer);
 	}
-
-	//EXPAND_LOGIC_LOW
 
 }
 

@@ -269,7 +269,7 @@ void MX_TIM7_Init(void) {
 	TIM_MasterConfigTypeDef sMasterConfig;
 
 	htim7.Instance = TIM7;
-	htim7.Init.Prescaler = 10000;
+	htim7.Init.Prescaler = 17578;
 	htim7.Init.CounterMode = TIM_COUNTERMODE_UP;
 	htim7.Init.Period = 1000;
 	htim7.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
@@ -327,7 +327,7 @@ void MX_TIM13_Init(void) {
 void MX_TIM16_Init(void) {
 
 	htim16.Instance = TIM16;
-	htim16.Init.Prescaler = 4000;
+	htim16.Init.Prescaler = 5000;
 	htim16.Init.CounterMode = TIM_COUNTERMODE_UP;
 	htim16.Init.Period = 2000;
 	htim16.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;

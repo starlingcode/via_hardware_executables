@@ -28,7 +28,7 @@ void mainHardwareInit(void) {
 	HAL_TIM_PWM_Start(&htim5, TIM_CHANNEL_1);
 
 	// set the priority and enable an interrupt line to be used by the trigger button input and aux trigger
-	HAL_NVIC_SetPriority(EXTI1_IRQn, 3, 0);
+	HAL_NVIC_SetPriority(EXTI1_IRQn, 1, 3);
 	HAL_NVIC_EnableIRQ(EXTI1_IRQn);
 	HAL_NVIC_SetPriority(EXTI15_10_IRQn, 1, 0);
 	HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
@@ -48,6 +48,8 @@ void mainHardwareInit(void) {
 	//	 initialize the timer that is used for touch sensor press timeout
 	__HAL_TIM_ENABLE_IT(&htim7, TIM_IT_UPDATE);
 
+	TIM16->PSC = 1000;
+	TIM16->ARR = 2000;
 	// initialize the shA timer
 	__HAL_TIM_ENABLE_IT(&htim16, TIM_IT_UPDATE);
 	// initialize the blink timer
