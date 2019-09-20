@@ -14,8 +14,8 @@
 int triggerDebounce = 0;
 int buttonPressed = 1;
 
-#define EXPAND_LOGIC_HIGH GPIOA->BRR = (uint32_t)GPIO_PIN_12;
-#define EXPAND_LOGIC_LOW GPIOA->BSRR = (uint32_t)GPIO_PIN_12;
+#define PROFILE_HIGH GPIOC->BRR = (uint32_t)GPIO_PIN_13;
+#define PROFILE_LOW GPIOC->BSRR = (uint32_t)GPIO_PIN_13;
 
 #ifdef __cplusplus
 extern "C" {
@@ -115,12 +115,8 @@ void TIM16_IRQHandler(void)
 /// Aux timer 1 interrupt handler to signal timer update events (overflow).
 void TIM17_IRQHandler(void)
 {
-
-	(*auxTimer1InterruptCallback)(modulePointer);
-	TIM18->CR1 |= TIM_CR1_CEN;
-
 	__HAL_TIM_CLEAR_FLAG(&htim17, TIM_FLAG_UPDATE);
-	__HAL_TIM_DISABLE(&htim17);
+	(*auxTimer1InterruptCallback)(modulePointer);
 
 }
 
@@ -139,10 +135,18 @@ void TIM18_DAC2_IRQHandler(void)
 void TIM13_IRQHandler(void)
 {
 
+//	PROFILE_HIGH
+
+
+	__HAL_TIM_CLEAR_FLAG(&htim13, TIM_FLAG_UPDATE);
+
 	int tsl_status_here;
 	// run the state machine from the STM Touch Library
 	tsl_status_here = tsl_user_Exec();
-	__HAL_TIM_CLEAR_FLAG(&htim13, TIM_FLAG_UPDATE);
+
+//	PROFILE_LOW
+
+
 
 }
 
@@ -150,9 +154,10 @@ void TIM13_IRQHandler(void)
 void TIM7_IRQHandler(void)
 {
 
+	__HAL_TIM_CLEAR_FLAG(&htim7, TIM_FLAG_UPDATE);
+
 	(*uiTimerCallback)(modulePointer);
 
-	HAL_TIM_IRQHandler(&htim7);
 
 }
 
@@ -179,7 +184,9 @@ void DMA1_Channel1_IRQHandler(void)
 /// Dac transfer complete event handler, inspect the DMA control register to determine if half transfer or full transfer.
 void DMA1_Channel5_IRQHandler(void)
 {
-//	EXPAND_LOGIC_HIGH;
+
+//	PROFILE_HIGH
+
 	if ((DMA1->ISR & (DMA_FLAG_HT1 << 16)) != 0) {
 		DMA1->IFCR = DMA_FLAG_HT1 << 16;
 		(*dacHalfTransferCallback)(modulePointer);
@@ -187,8 +194,8 @@ void DMA1_Channel5_IRQHandler(void)
 		DMA1->IFCR = DMA_FLAG_TC1 << 16;
 		(*dacTransferCompleteCallback)(modulePointer);
 	}
-//	EXPAND_LOGIC_LOW;
 
+//	PROFILE_LOW
 }
 
 #ifdef __cplusplus

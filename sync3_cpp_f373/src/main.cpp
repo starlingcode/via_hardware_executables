@@ -161,7 +161,7 @@ int main(void)
   module.ioStreamInit();
 
 	/// Set the dac sample rate in number of processor clocks (72mhz) and start the dac timer. Timer overflow amount should be a factor or multiple of 1440 less one to line up with SDADC conversion.
-	TIM6->ARR = 44;
+	TIM6->ARR = 59;
 	HAL_TIM_Base_Start(&htim6);
 
   /* USER CODE END 2 */
@@ -273,7 +273,7 @@ void _Error_Handler(char *file, int line)
 void assert_failed(uint8_t* file, uint32_t line)
 { 
   /* USER CODE BEGIN 6 */
-  /* User can add his own implementation to report the file name and line number,
+  /* User can add their own implementation to report the file name and line number,
      tex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
   /* USER CODE END 6 */
 }

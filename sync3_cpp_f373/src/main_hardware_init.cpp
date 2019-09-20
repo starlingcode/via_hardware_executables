@@ -31,14 +31,17 @@ void mainHardwareInit(void) {
 	HAL_TIM_PWM_Start(&htim5, TIM_CHANNEL_1);
 
 	/// Set the priority and enable an interrupt line to be used by the trigger button input and aux trigger.
-//	HAL_NVIC_SetPriority(EXTI1_IRQn, 3, 0);
-	HAL_NVIC_SetPriority(EXTI1_IRQn, 1, 2);
+	HAL_NVIC_SetPriority(SysTick_IRQn, 3, 3);
+	HAL_NVIC_SetPriority(EXTI1_IRQn, 3, 0);
+	HAL_NVIC_SetPriority(TIM7_IRQn, 0, 0);
 	HAL_NVIC_EnableIRQ(EXTI1_IRQn);
-	HAL_NVIC_SetPriority(EXTI15_10_IRQn, 1, 1);
+	HAL_NVIC_SetPriority(EXTI15_10_IRQn, 0, 2);
 	HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
-	HAL_NVIC_SetPriority(TIM12_IRQn, 0, 0);
+	HAL_NVIC_SetPriority(TIM12_IRQn, 0, 1);
 	HAL_NVIC_EnableIRQ(TIM12_IRQn);
 	HAL_NVIC_SetPriority(DMA1_Channel5_IRQn, 1, 0);
+	HAL_NVIC_SetPriority(DMA1_Channel1_IRQn, 2, 1);
+
 
 	/// Initialize the timer that is used to detect rising and falling edges at the trigger input.
 	HAL_TIM_IC_Start_IT(&htim12, TIM_CHANNEL_2);
@@ -49,15 +52,16 @@ void mainHardwareInit(void) {
 	// Initialize the timer that is used for touch sensor press timeout.
 	__HAL_TIM_ENABLE_IT(&htim7, TIM_IT_UPDATE);
 
-	TIM16->ARR = 5000;
+	TIM16->PSC = 1000;
+	TIM16->ARR = 2000;
 	/// Initialize the trigger debounce timer.
 	__HAL_TIM_ENABLE_IT(&htim16, TIM_IT_UPDATE);
 	/// Initialize the aux timers.
-	TIM17->PSC = 1000;
-	TIM17->ARR = 2000;
+	TIM17->PSC = 4096;
+	TIM17->ARR = 65535;
 	__HAL_TIM_ENABLE_IT(&htim17, TIM_IT_UPDATE);
-	TIM18->PSC = 1000;
-	TIM18->ARR = 2000;
+	TIM18->PSC = 4096;
+	TIM18->ARR = 65535;
 	__HAL_TIM_ENABLE_IT(&htim18, TIM_IT_UPDATE);
 
 }

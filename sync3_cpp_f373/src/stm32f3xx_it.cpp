@@ -194,20 +194,20 @@ void SysTick_Handler(void)
 
 void DMA1_Channel3_IRQHandler(void)
 {
-	if ((DMA1->ISR & (DMA_FLAG_HT1 << 8)) != 0) {
+//	if ((DMA1->ISR & (DMA_FLAG_HT1 << 8)) != 0) {
 		DMA1->IFCR = DMA_FLAG_HT1 << 8;
-	} else if ((DMA1->ISR & (DMA_FLAG_TC1 << 8)) != 0)  {
+//	} else if ((DMA1->ISR & (DMA_FLAG_TC1 << 8)) != 0)  {
 		DMA1->IFCR = DMA_FLAG_TC1 << 8;
-	}
+//	}
 }
 
 void DMA1_Channel4_IRQHandler(void)
 {
-	if ((DMA1->ISR & (DMA_FLAG_HT1 << 12)) != 0) {
+//	if ((DMA1->ISR & (DMA_FLAG_HT1 << 12)) != 0) {
 		DMA1->IFCR = DMA_FLAG_HT1 << 12;
-	} else if ((DMA1->ISR & (DMA_FLAG_TC1 << 12)) != 0)  {
+//	} else if ((DMA1->ISR & (DMA_FLAG_TC1 << 12)) != 0)  {
 		DMA1->IFCR = DMA_FLAG_TC1 << 12;
-	}
+//	}
 }
 
 
