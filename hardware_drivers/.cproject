@@ -6,11 +6,11 @@
 				<externalSettings>
 					<externalSetting>
 						<entry flags="VALUE_WORKSPACE_PATH" kind="includePath" name="/via_cplusplus"/>
-						<entry flags="VALUE_WORKSPACE_PATH" kind="includePath" name="/via_hardware_drivers"/>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="includePath" name="/hardware_drivers"/>
 						<entry flags="VALUE_WORKSPACE_PATH" kind="libraryPath" name="/via_cplusplus/Debug"/>
-						<entry flags="VALUE_WORKSPACE_PATH" kind="libraryPath" name="/via_hardware_drivers/Debug"/>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="libraryPath" name="/hardware_drivers/Debug"/>
 						<entry flags="RESOLVED" kind="libraryFile" name="via_cplusplus" srcPrefixMapping="" srcRootPath=""/>
-						<entry flags="RESOLVED" kind="libraryFile" name="via_hardware_drivers" srcPrefixMapping="" srcRootPath=""/>
+						<entry flags="RESOLVED" kind="libraryFile" name="hardware_drivers" srcPrefixMapping="" srcRootPath=""/>
 					</externalSetting>
 				</externalSettings>
 				<extensions>
@@ -138,11 +138,11 @@
 				<externalSettings>
 					<externalSetting>
 						<entry flags="VALUE_WORKSPACE_PATH" kind="includePath" name="/via_cplusplus"/>
-						<entry flags="VALUE_WORKSPACE_PATH" kind="includePath" name="/via_hardware_drivers"/>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="includePath" name="/hardware_drivers"/>
 						<entry flags="VALUE_WORKSPACE_PATH" kind="libraryPath" name="/via_cplusplus/Release"/>
-						<entry flags="VALUE_WORKSPACE_PATH" kind="libraryPath" name="/via_hardware_drivers/Release"/>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="libraryPath" name="/hardware_drivers/Release"/>
 						<entry flags="RESOLVED" kind="libraryFile" name="via_cplusplus" srcPrefixMapping="" srcRootPath=""/>
-						<entry flags="RESOLVED" kind="libraryFile" name="via_hardware_drivers" srcPrefixMapping="" srcRootPath=""/>
+						<entry flags="RESOLVED" kind="libraryFile" name="hardware_drivers" srcPrefixMapping="" srcRootPath=""/>
 					</externalSetting>
 				</externalSettings>
 				<extensions>
