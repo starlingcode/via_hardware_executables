@@ -71,7 +71,7 @@ C_FILES        = $(notdir $(wildcard $(patsubst %,%/*.c,$(PACKAGES))))
 AS_FILES       = $(notdir $(wildcard $(patsubst %,%/*.s,$(PACKAGES))))
 
 $(BUILD_DIR)%.o: %.s
-	$(AS) -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -o "$@" "$<"
+	$(AS) -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -g -o "$@" "$<"
 
 $(BUILD_DIR)%.o: %.c
 	$(CC) $(CFLAGS) -c -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
@@ -136,7 +136,7 @@ BASE_JTAG_CMD = openocd \
 
 POSTLUDE = -c "sleep 200" -c "reset run" -c "shutdown"
 
-upload: $(TARGET_ELF)
+upload: $(BUILD_DIR) $(TARGET_ELF)
 	$(BASE_JTAG_CMD) \
 				-c "flash erase_address 0x08000000 32768" \
 				-c "reset halt" \

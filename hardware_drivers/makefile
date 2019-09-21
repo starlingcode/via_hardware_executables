@@ -46,18 +46,18 @@ AFLAGS = -mcpu=cortex-m4 \
  			-mfloat-abi=hard \
  			-mfpu=fpv4-sp-d16
 
-CPPFLAGS = $(AFLAGS) $(IFLAGS) $(DFLAGS) \
-			-std=c++0x \
+CPPFLAGS = $(AFLAGS) -std=c++0x $(DFLAGS) $(IFLAGS) \
 			-O3 \
 			-funroll-all-loops \
 			-Wall \
 			-fmessage-length=0 \
 			-ffunction-sections \
 			-fdata-sections \
+			-c \
 			-fno-exceptions \
 			-fno-rtti 
 
-CFLAGS = $(AFLAGS) $(IFLAGS) $(DFLAGS) \
+CFLAGS = $(AFLAGS) $(DFLAGS) $(IFLAGS) \
 			-O3 \
 			-Wall \
 			-fmessage-length=0 \
@@ -113,7 +113,7 @@ $(BUILD_DIR)%.o: %.c
 	$(CC) $(CFLAGS) -c -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
 
 $(BUILD_DIR)%.o: %.cpp
-	$(CXX) $(CPPFLAGS) -c -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
+	$(CXX) $(CPPFLAGS) -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -o "$@" "$<"
 
 
 OBJ_FILES      = $(CC_FILES:.cpp=.o) $(C_FILES:.c=.o) $(AS_FILES:.s=.o)
