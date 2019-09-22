@@ -144,5 +144,8 @@ upload: $(BUILD_DIR) $(TARGET_ELF)
 				-c "verify_image $(TARGET_BIN) 0x08000000" \
 				$(POSTLUDE)
 
+upload-usb: $(BUILD_DIR) $(TARGET_ELF)
+	sudo dfu-util --device 0483:df11 -a 0 -s 0x08000000 -D $(TARGET_BIN) -R
+
 .PHONY: upload
 
