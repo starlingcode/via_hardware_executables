@@ -4,5 +4,7 @@
 
 # Packages to build
 TARGET         = calib
+TARGET_ID		= 00
+TARGET_VERSION	= 00
 
 include hardware_drivers/makefile.inc

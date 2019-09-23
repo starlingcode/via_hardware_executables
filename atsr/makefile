@@ -4,5 +4,7 @@
 
 # Packages to build
 TARGET         = atsr
+TARGET_ID		= 05
+TARGET_VERSION	= 01
 
 include hardware_drivers/makefile.inc

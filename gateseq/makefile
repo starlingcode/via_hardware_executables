@@ -4,5 +4,7 @@
 
 # Packages to build
 TARGET         = gateseq
+TARGET_ID		= 04
+TARGET_VERSION	= 01
 
 include hardware_drivers/makefile.inc

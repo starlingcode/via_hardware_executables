@@ -4,5 +4,7 @@
 
 # Packages to build
 TARGET         = osc3
+TARGET_ID		= 06
+TARGET_VERSION	= 01
 
 include hardware_drivers/makefile.inc

@@ -33,7 +33,8 @@ AFLAGS = -mcpu=cortex-m4 \
 
 CPPFLAGS = $(AFLAGS) $(IFLAGS) $(DFLAGS) \
 			-std=c++0x \
-			-O3 \
+			-Og \
+			-g3 \
 			-Wall \
 			-fmessage-length=0 \
 			-ffunction-sections \
@@ -42,6 +43,7 @@ CPPFLAGS = $(AFLAGS) $(IFLAGS) $(DFLAGS) \
 
 CFLAGS = $(AFLAGS) $(IFLAGS) $(DFLAGS) \
 			-O3 \
+			-g3 \
 			-Wall \
 			-fmessage-length=0 \
 			-ffunction-sections \
@@ -85,6 +87,8 @@ OBJS           = $(patsubst %,$(BUILD_DIR)%,$(OBJ_FILES))
 
 LIBVIA = build/$(DRIVERS)/
 
+VIAARCHIVE = $(LIBVIA)/$(DRIVERS).a
+
 LINKER_SCRIPT = $(TARGET)/STM32F373CCTx_FLASH.ld
 
 LIBS = -l$(DRIVERS)
@@ -100,7 +104,7 @@ $(BUILD_DIR):
 	mkdir -p $(BUILD_DIR)
 
 # Tool invocations
-$(TARGET_ELF): $(OBJS)
+$(TARGET_ELF): $(OBJS) $(VIAARCHIVE)
 	@echo 'Building target: $@'
 	@echo 'Invoking: MCU G++ Linker'
 	$(CXX) -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -L$(LIBVIA) -specs=nosys.specs -specs=nano.specs -T$(LINKER_SCRIPT) -Wl,-Map=$(BUILD_DIR)output.map -Wl,--gc-sections -fno-exceptions -fno-rtti -o $(TARGET_ELF) $(OBJS) $(LIBS) -lm
@@ -108,8 +112,12 @@ $(TARGET_ELF): $(OBJS)
 	@echo ' '
 	make -f $(TARGET)/makefile --no-print-directory post-build
 
+$(VIAARCHIVE):
+	make -f $(DRIVERS)/makefile
+
 clean:
 	rm -r build/$(TARGET)
+	rm -r build/$(DRIVERS)
 
 post-build:
 	-@echo 'Generating binary and Printing size information:'
@@ -144,8 +152,21 @@ upload: $(BUILD_DIR) $(TARGET_ELF)
 				-c "verify_image $(TARGET_BIN) 0x08000000" \
 				$(POSTLUDE)
 
+calib: 
+	$(BASE_JTAG_CMD) \
+				-c "stm32f1x options_read 0" \
+				-c "stm32f1x options_write 0 USEROPT 0x$(TARGET_VERSION)$(TARGET_ID)" \
+				-c "stm32f1x options_load 0" -c "shutdown"
+	$(BASE_JTAG_CMD) \
+				-c "stm32f1x options_read 0" \
+				$(POSTLUDE)
+
 upload-usb: $(BUILD_DIR) $(TARGET_ELF)
 	sudo dfu-util --device 0483:df11 -a 0 -s 0x08000000 -D $(TARGET_BIN) -R
 
-.PHONY: upload
+calib-usb: $(BUILD_DIR)
+	python3 dfuobgen.py $(TARGET) $(TARGET_ID) $(TARGET_VERSION)
+	sudo dfu-util --device 0483:df11 -a 1 -s 0x1FFFF800:will-reset -D $(BUILD_DIR)optionbytes.temp
+
+.PHONY: upload calib upload-usb calib-usb
 

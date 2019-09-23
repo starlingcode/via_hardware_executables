@@ -4,5 +4,7 @@
 
 # Packages to build
 TARGET         = sync
+TARGET_ID		= 02
+TARGET_VERSION	= 01
 
 include hardware_drivers/makefile.inc

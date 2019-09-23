@@ -4,5 +4,7 @@
 
 # Packages to build
 TARGET         = delay
+TARGET_ID		= 00
+TARGET_VERSION	= 00
 
 include hardware_drivers/makefile.inc

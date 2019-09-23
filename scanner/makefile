@@ -4,5 +4,7 @@
 
 # Packages to build
 TARGET         = scanner
+TARGET_ID		= 03
+TARGET_VERSION	= 01
 
 include hardware_drivers/makefile.inc
