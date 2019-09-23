@@ -1,13 +1,12 @@
-# via_hardware_executables
+# Via Hardware Executables
 Projects to build the executable files for the Via modules.
 
-## Buiding
 You can work within one of two build environments: the [Via Development Environment Vagrant box](https://github.com/starlingcode/via-dev-environment) or [System Workbench for STM32](https://www.openstm32.org/System+Workbench+for+STM32). Both options offer support for Mac, Windows, or Linux machines.
 
-### Setting up Vagrant Box
+## Setting up Vagrant Box
 See the readme for the [Via Development Environment Vagrant box](https://github.com/starlingcode/via-dev-environment) for setup and build instructions.
 
-### Setting up a System Workbench for STM32
+## Setting up a System Workbench for STM32
 First, [install the System Workbench application](https://www.openstm32.org/System+Workbench+for+STM32). You will need to register an account with OpenSTM32 to access the download and installation instructions.
 
 Once you have installed the application, create a new empty workspace.
@@ -28,7 +27,7 @@ The repository will be cloned. Once this is complete, make sure the radio button
 
 A project for the drivers and each module should be detected. You can click Finish and start building!
 
-### Building and flashing in System Workbench
+## Building and flashing in System Workbench
 Lets assume you just set up the Eclipse environment. You will want to build the Release and Debug configurations for hardware_drivers first. The builds a static library used by the individual module executable projects. 
 
 Then, you can build the module of choice by building the Release and Debug configurations of that project. 
