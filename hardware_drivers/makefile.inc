@@ -98,7 +98,7 @@ TARGET_ELF = $(BUILD_DIR)$(TARGET).elf
 TARGET_BIN = $(BUILD_DIR)$(TARGET).bin
 
 # All Target
-all: $(BUILD_DIR) $(TARGET_ELF)
+all: $(BUILD_DIR) $(TARGET_ELF) 
 
 $(BUILD_DIR):
 	mkdir -p $(BUILD_DIR)
@@ -116,8 +116,9 @@ $(VIAARCHIVE):
 	make -f $(DRIVERS)/makefile
 
 clean:
-	rm -r build/$(TARGET)
-	rm -r build/$(DRIVERS)
+
+	rm -r build/$(TARGET) || true
+#	rm -r build/$(DRIVERS) || true
 
 post-build:
 	-@echo 'Generating binary and Printing size information:'

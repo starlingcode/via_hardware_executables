@@ -112,6 +112,8 @@ OBJS           = $(patsubst %,$(BUILD_DIR)%,$(OBJ_FILES))
 
 all: $(BUILD_DIR) $(BUILD_DIR)lib$(DRIVERS).a
 
+-include $(BUILD_DIR)*.d
+
 $(BUILD_DIR):
 	mkdir -p $(BUILD_DIR)
 
@@ -124,4 +126,4 @@ $(BUILD_DIR)lib$(DRIVERS).a: $(OBJS)
 	@echo ' '
 
 clean:
-	rm -r build/$(DRIVERS)
+	rm -r build/$(DRIVERS) || true
