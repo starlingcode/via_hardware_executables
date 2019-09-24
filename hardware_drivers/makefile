@@ -73,22 +73,11 @@ PACKAGES       = $(DRIVERS) \
 		$(DRIVERS)/stm32f373/Middlewares/ST/STM32_TouchSensing_Library/src \
 		$(DRIVERS)/stm32f373/Drivers/STM32F3xx_HAL_Driver/Src \
 		$(DRIVERS)/Via/io/src \
-		$(DRIVERS)/Via/modules/atsr \
-		$(DRIVERS)/Via/modules/calib \
-		$(DRIVERS)/Via/modules/delay \
-		$(DRIVERS)/Via/modules/gateseq \
-		$(DRIVERS)/Via/modules/meta \
-		$(DRIVERS)/Via/modules/osc3 \
-		$(DRIVERS)/Via/modules/scanner \
-		$(DRIVERS)/Via/modules/sinebeat \
-		$(DRIVERS)/Via/modules/sync \
-		$(DRIVERS)/Via/modules/sync3 \
-		$(DRIVERS)/Via/modules/touch \
+		$(wildcard $(DRIVERS)/Via/modules/*) \
 		$(DRIVERS)/Via/synthesis/oscillators \
 		$(DRIVERS)/Via/synthesis/sequencers \
 		$(DRIVERS)/Via/synthesis/signal_processors \
 		$(DRIVERS)/Via/ui/src
-
 
 TOOLCHAIN_PATH ?= /usr/local/gcc-arm-none-eabi-7-2017-q4-major/
 
@@ -106,7 +95,9 @@ AR             = $(TOOLCHAIN_BIN)arm-none-eabi-ar
 VPATH          = $(PACKAGES)
 
 CC_FILES       = $(notdir $(wildcard $(patsubst %,%/*.cpp,$(PACKAGES))))
+CC_FILES		+= $(notdir $(wildcard $(patsubst %,%/*/*.cpp,$(PACKAGES))))
 C_FILES        = $(notdir $(wildcard $(patsubst %,%/*.c,$(PACKAGES))))
+C_FILES 		+= $(notdir $(wildcard $(patsubst %,%/*/*.c,$(PACKAGES))))
 AS_FILES       = $(notdir $(wildcard $(patsubst %,%/*.s,$(PACKAGES))))
 
 $(BUILD_DIR)%.o: %.c
