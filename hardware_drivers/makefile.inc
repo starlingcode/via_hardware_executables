@@ -155,9 +155,11 @@ upload: $(BUILD_DIR) $(TARGET_ELF)
 
 calib: 
 	$(BASE_JTAG_CMD) \
-				-c "stm32f1x options_read 0" \
+				-c "reset_config none separate" \
+				-c "reset halt" \
+				-c "sleep 200" \
 				-c "stm32f1x options_write 0 USEROPT 0x$(TARGET_VERSION)$(TARGET_ID)" \
-				-c "stm32f1x options_load 0" -c "shutdown"
+				-c "stm32f1x options_load 0" -c "sleep 200" -c "shutdown"
 	$(BASE_JTAG_CMD) \
 				-c "stm32f1x options_read 0" \
 				$(POSTLUDE)

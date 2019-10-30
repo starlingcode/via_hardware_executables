@@ -68,15 +68,10 @@ CFLAGS = $(AFLAGS) $(DFLAGS) $(IFLAGS) \
 # Packages to build
 TARGET         = $(DRIVERS)
 PACKAGES       = $(DRIVERS) \
-		$(DRIVERS)/Drivers/STM32F3xx_HAL_Driver/Src \
 		$(DRIVERS)/stm32f373/src \
 		$(DRIVERS)/stm32f373/Middlewares/ST/STM32_TouchSensing_Library/src \
-		$(DRIVERS)/stm32f373/Drivers/STM32F3xx_HAL_Driver/Src \
 		$(DRIVERS)/Via/io/src \
 		$(wildcard $(DRIVERS)/Via/modules/*) \
-		$(DRIVERS)/Via/synthesis/oscillators \
-		$(DRIVERS)/Via/synthesis/sequencers \
-		$(DRIVERS)/Via/synthesis/signal_processors \
 		$(DRIVERS)/Via/ui/src
 
 TOOLCHAIN_PATH ?= /usr/local/gcc-arm-none-eabi-7-2017-q4-major/
