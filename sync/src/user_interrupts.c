@@ -7,6 +7,8 @@
 #define LOGICA_HIGH GPIOC->BRR = (uint32_t)GPIO_PIN_13;
 #define LOGICA_LOW GPIOC->BSRR = (uint32_t)GPIO_PIN_13;
 
+#define PROFILE2_HIGH GPIOA->BRR = (uint32_t)GPIO_PIN_12;
+#define PROFILE2_LOW GPIOA->BSRR = (uint32_t)GPIO_PIN_12;
 
 int triggerDebounce = 0;
 int buttonPressed = 1;
@@ -35,6 +37,8 @@ extern TIM_HandleTypeDef htim18;
 void TIM12_IRQHandler(void)
 {
 
+//	PROFILE2_HIGH
+
 	if (TRIGGER_RISING_EDGE) {
 		(*mainRisingEdgeCallback)(modulePointer);
 	} else {
@@ -42,6 +46,8 @@ void TIM12_IRQHandler(void)
 	}
 
 	__HAL_TIM_CLEAR_FLAG(&htim12, TIM_FLAG_CC2);
+
+//	PROFILE2_LOW
 
 }
 
@@ -180,7 +186,7 @@ void DMA1_Channel1_IRQHandler(void)
 
 void DMA1_Channel5_IRQHandler(void)
 {
-	//LOGICA_HIGH
+//	LOGICA_HIGH
 
 	if ((DMA1->ISR & (DMA_FLAG_HT1 << 16)) != 0) {
 		DMA1->IFCR = DMA_FLAG_HT1 << 16;
@@ -190,7 +196,7 @@ void DMA1_Channel5_IRQHandler(void)
 		(*dacTransferCompleteCallback)(modulePointer);
 	}
 
-	//LOGICA_LOW
+//	LOGICA_LOW
 
 }
 

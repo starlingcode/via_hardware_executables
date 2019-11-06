@@ -17,6 +17,9 @@ int buttonPressed = 1;
 #define PROFILE_HIGH GPIOC->BRR = (uint32_t)GPIO_PIN_13;
 #define PROFILE_LOW GPIOC->BSRR = (uint32_t)GPIO_PIN_13;
 
+#define PROFILE2_HIGH GPIOA->BRR = (uint32_t)GPIO_PIN_12;
+#define PROFILE2_LOW GPIOA->BSRR = (uint32_t)GPIO_PIN_12;
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -40,6 +43,8 @@ extern TIM_HandleTypeDef htim18;
 void TIM12_IRQHandler(void)
 {
 
+//	PROFILE2_HIGH
+
 	if (TRIGGER_RISING_EDGE) {
 		(*mainRisingEdgeCallback)(modulePointer);
 	} else {
@@ -47,6 +52,8 @@ void TIM12_IRQHandler(void)
 	}
 
 	__HAL_TIM_CLEAR_FLAG(&htim12, TIM_FLAG_CC2);
+
+//	PROFILE2_LOW
 
 }
 
@@ -135,17 +142,11 @@ void TIM18_DAC2_IRQHandler(void)
 void TIM13_IRQHandler(void)
 {
 
-//	PROFILE_HIGH
-
-
 	__HAL_TIM_CLEAR_FLAG(&htim13, TIM_FLAG_UPDATE);
 
 	int tsl_status_here;
 	// run the state machine from the STM Touch Library
 	tsl_status_here = tsl_user_Exec();
-
-//	PROFILE_LOW
-
 
 
 }

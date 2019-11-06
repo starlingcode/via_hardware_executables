@@ -27,11 +27,18 @@ void mainHardwareInit(void) {
 	HAL_TIM_Base_Start(&htim5);
 	HAL_TIM_PWM_Start(&htim5, TIM_CHANNEL_1);
 
-	// set the priority and enable an interrupt line to be used by the trigger button input and aux trigger
+	/// Set the priority and enable an interrupt line to be used by the trigger button input and aux trigger.
+	HAL_NVIC_SetPriority(SysTick_IRQn, 3, 3);
 	HAL_NVIC_SetPriority(EXTI1_IRQn, 3, 0);
+	HAL_NVIC_SetPriority(TIM7_IRQn, 2, 2);
 	HAL_NVIC_EnableIRQ(EXTI1_IRQn);
-	HAL_NVIC_SetPriority(EXTI15_10_IRQn, 1, 0);
+	HAL_NVIC_SetPriority(EXTI15_10_IRQn, 0, 2);
 	HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
+	HAL_NVIC_SetPriority(TIM12_IRQn, 0, 1);
+	HAL_NVIC_EnableIRQ(TIM12_IRQn);
+	HAL_NVIC_SetPriority(DMA1_Channel5_IRQn, 1, 0);
+	HAL_NVIC_SetPriority(DMA1_Channel1_IRQn, 2, 1);
+
 
 	// set the dac sample rate and start the dac timer
 	TIM6->ARR = 179;
