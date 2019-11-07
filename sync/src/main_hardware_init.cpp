@@ -30,7 +30,7 @@ void mainHardwareInit(void) {
 	/// Set the priority and enable an interrupt line to be used by the trigger button input and aux trigger.
 	HAL_NVIC_SetPriority(SysTick_IRQn, 3, 3);
 	HAL_NVIC_SetPriority(EXTI1_IRQn, 3, 0);
-	HAL_NVIC_SetPriority(TIM7_IRQn, 2, 2);
+	HAL_NVIC_SetPriority(TIM7_IRQn, 3, 2);
 	HAL_NVIC_EnableIRQ(EXTI1_IRQn);
 	HAL_NVIC_SetPriority(EXTI15_10_IRQn, 0, 2);
 	HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
