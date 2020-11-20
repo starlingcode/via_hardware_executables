@@ -34,6 +34,7 @@
 #include "stm32f3xx_hal.h"
 #include "stm32f3xx.h"
 #include "stm32f3xx_it.h"
+#include <via_f373_system.hpp>
 
 /* USER CODE BEGIN 0 */
 
@@ -65,6 +66,8 @@ void NMI_Handler(void)
 void HardFault_Handler(void)
 {
   /* USER CODE BEGIN HardFault_IRQn 0 */
+
+	SET_BLUE_LED_ONOFF(1);
 
   /* USER CODE END HardFault_IRQn 0 */
   while (1)

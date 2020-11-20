@@ -158,7 +158,7 @@ void TIM7_IRQHandler(void)
 
 	(*uiTimerCallback)(modulePointer);
 
-	HAL_TIM_IRQHandler(&htim7);
+	__HAL_TIM_CLEAR_FLAG(&htim7, TIM_FLAG_UPDATE);
 
 }
 

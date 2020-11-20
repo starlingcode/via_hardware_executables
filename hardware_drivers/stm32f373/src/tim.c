@@ -436,8 +436,8 @@ void HAL_TIM_Base_MspInit(TIM_HandleTypeDef* tim_baseHandle) {
 		;
 
 		/* TIM6 interrupt Init */
-		HAL_NVIC_SetPriority(TIM6_DAC1_IRQn, 1, 0);
-		HAL_NVIC_EnableIRQ(TIM6_DAC1_IRQn);
+//		HAL_NVIC_SetPriority(TIM6_DAC1_IRQn, 1, 0);
+//		HAL_NVIC_EnableIRQ(TIM6_DAC1_IRQn);
 		/* USER CODE BEGIN TIM6_MspInit 1 */
 
 		/* USER CODE END TIM6_MspInit 1 */
@@ -450,7 +450,7 @@ void HAL_TIM_Base_MspInit(TIM_HandleTypeDef* tim_baseHandle) {
 		;
 
 		/* TIM7 interrupt Init */
-		HAL_NVIC_SetPriority(TIM7_IRQn, 2, 0);
+		HAL_NVIC_SetPriority(TIM7_IRQn, 3, 0);
 		HAL_NVIC_EnableIRQ(TIM7_IRQn);
 		/* USER CODE BEGIN TIM7_MspInit 1 */
 
