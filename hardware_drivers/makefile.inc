@@ -126,6 +126,7 @@ post-build:
 	$(NM) --print-size --size-sort --radix=d $(TARGET_ELF)
 	$(SIZE) $(TARGET_ELF)
 	-@echo ' '
+	python append_resources.py    
 
 .SECONDARY: post-build
 
