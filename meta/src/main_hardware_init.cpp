@@ -1,7 +1,7 @@
 
 /* USER CODE BEGIN Includes */
 
-#include <via_platform_binding.hpp>
+#include <via-platform-binding.hpp>
 #include "main.h"
 #include "stm32f3xx_hal.h"
 #include "adc.h"
