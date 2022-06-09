@@ -8,6 +8,34 @@
 #include "interrupt_link.hpp"
 #include "scanner.hpp"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+void * modulePointer;
+
+void (*tscTimerCallback)(void*);
+void (*uiTimerCallback)(void*);
+void (*mainRisingEdgeCallback)(void*);
+void (*mainFallingEdgeCallback)(void*);
+void (*auxRisingEdgeCallback)(void*);
+void (*auxFallingEdgeCallback)(void*);
+void (*buttonPressedCallback)(void*);
+void (*buttonReleasedCallback)(void*);
+void (*adcConversionCompleteCallback)(void*);
+void (*dacHalfTransferCallback)(void*);
+void (*dacTransferCompleteCallback)(void*);
+void (*dacTimerCallback)(void*);
+void (*sdaadcConversionCompleteCallback)(void*);
+void (*auxTimer1InterruptCallback)(void*);
+void (*auxTimer2InterruptCallback)(void*);
+void (*auxTimer3InterruptCallback)(void*);
+
+
+#ifdef __cplusplus
+}
+#endif
+
 void linkInterrupts(ViaScanner * voidPointer) {
 
 	modulePointer = (void *) voidPointer;

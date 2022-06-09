@@ -12,23 +12,25 @@
 extern "C" {
 #endif
 
-void * modulePointer;
+extern void * modulePointer;
 
-void (*tscTimerCallback)(void*);
-void (*uiTimerCallback)(void*);
-void (*mainRisingEdgeCallback)(void*);
-void (*mainFallingEdgeCallback)(void*);
-void (*auxRisingEdgeCallback)(void*);
-void (*auxFallingEdgeCallback)(void*);
-void (*buttonPressedCallback)(void*);
-void (*buttonReleasedCallback)(void*);
-void (*adcConversionCompleteCallback)(void*);
-void (*dacHalfTransferCallback)(void*);
-void (*dacTransferCompleteCallback)(void*);
-void (*dacTimerCallback)(void*);
-void (*sdaadcConversionCompleteCallback)(void*);
-void (*auxTimer1InterruptCallback)(void*);
-void (*auxTimer2InterruptCallback)(void*);
+extern void (*tscTimerCallback)(void*);
+extern void (*uiTimerCallback)(void*);
+extern void (*mainRisingEdgeCallback)(void*);
+extern void (*mainFallingEdgeCallback)(void*);
+extern void (*auxRisingEdgeCallback)(void*);
+extern void (*auxFallingEdgeCallback)(void*);
+extern void (*buttonPressedCallback)(void*);
+extern void (*buttonReleasedCallback)(void*);
+extern void (*adcConversionCompleteCallback)(void*);
+extern void (*dacHalfTransferCallback)(void*);
+extern void (*dacTransferCompleteCallback)(void*);
+extern void (*dacTimerCallback)(void*);
+extern void (*sdaadcConversionCompleteCallback)(void*);
+extern void (*auxTimer1InterruptCallback)(void*);
+extern void (*auxTimer2InterruptCallback)(void*);
+extern void (*auxTimer3InterruptCallback)(void*);
+
 
 #ifdef __cplusplus
 }
@@ -49,6 +51,7 @@ void dacTimerHandler(void *);
 void sdaadcConversionCompleteHandler(void *);
 void auxTimer1InterruptHandler(void *);
 void auxTimer2InterruptHandler(void *);
+void auxTimer3InterruptHandler(void *);
 
 
 

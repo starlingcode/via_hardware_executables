@@ -9,6 +9,34 @@
 #include "interrupt_link.hpp"
 #include "calib.hpp"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+void * modulePointer;
+
+void (*tscTimerCallback)(void*);
+void (*uiTimerCallback)(void*);
+void (*mainRisingEdgeCallback)(void*);
+void (*mainFallingEdgeCallback)(void*);
+void (*auxRisingEdgeCallback)(void*);
+void (*auxFallingEdgeCallback)(void*);
+void (*buttonPressedCallback)(void*);
+void (*buttonReleasedCallback)(void*);
+void (*adcConversionCompleteCallback)(void*);
+void (*dacHalfTransferCallback)(void*);
+void (*dacTransferCompleteCallback)(void*);
+void (*dacTimerCallback)(void*);
+void (*sdaadcConversionCompleteCallback)(void*);
+void (*auxTimer1InterruptCallback)(void*);
+void (*auxTimer2InterruptCallback)(void*);
+void (*auxTimer3InterruptCallback)(void*);
+
+
+#ifdef __cplusplus
+}
+#endif
+
 /// Assign the callback function pointers to the wrapper functions and the pointer to the module class to the void pointer modulePointer.
 void linkInterrupts(ViaCalib * voidPointer) {
 

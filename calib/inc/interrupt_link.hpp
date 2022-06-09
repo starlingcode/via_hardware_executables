@@ -1,8 +1,8 @@
- /** \file interrupt_link.hpp
- * \brief Interrupt handler callback declarations.
+/*
+ * interrupt_link.hpp
  *
- * Declare the anonymous callback function pointers and functions that will be assigned to them.
- *
+ *  Created on: Sep 15, 2018
+ *      Author: willmitchell
  */
 
 #ifndef INTERRUPT_LINK_HPP_
@@ -12,36 +12,30 @@
 extern "C" {
 #endif
 
-/// This is used as an anonymous pointer to the main module class instance so it can be referenced in C code.
-void * modulePointer;
+extern void * modulePointer;
 
-//@{
-/// A callback function to allow C code to call methods of the main module class by passing in the modulePointer void pointer.
-void (*tscTimerCallback)(void*);
-void (*uiTimerCallback)(void*);
-void (*mainRisingEdgeCallback)(void*);
-void (*mainFallingEdgeCallback)(void*);
-void (*auxRisingEdgeCallback)(void*);
-void (*auxFallingEdgeCallback)(void*);
-void (*buttonPressedCallback)(void*);
-void (*buttonReleasedCallback)(void*);
-void (*adcConversionCompleteCallback)(void*);
-void (*dacHalfTransferCallback)(void*);
-void (*dacTransferCompleteCallback)(void*);
-void (*dacTimerCallback)(void*);
-void (*sdaadcConversionCompleteCallback)(void*);
-void (*auxTimer1InterruptCallback)(void*);
-void (*auxTimer2InterruptCallback)(void*);
-//@}
-
+extern void (*tscTimerCallback)(void*);
+extern void (*uiTimerCallback)(void*);
+extern void (*mainRisingEdgeCallback)(void*);
+extern void (*mainFallingEdgeCallback)(void*);
+extern void (*auxRisingEdgeCallback)(void*);
+extern void (*auxFallingEdgeCallback)(void*);
+extern void (*buttonPressedCallback)(void*);
+extern void (*buttonReleasedCallback)(void*);
+extern void (*adcConversionCompleteCallback)(void*);
+extern void (*dacHalfTransferCallback)(void*);
+extern void (*dacTransferCompleteCallback)(void*);
+extern void (*dacTimerCallback)(void*);
+extern void (*sdaadcConversionCompleteCallback)(void*);
+extern void (*auxTimer1InterruptCallback)(void*);
+extern void (*auxTimer2InterruptCallback)(void*);
+extern void (*auxTimer3InterruptCallback)(void*);
 
 
 #ifdef __cplusplus
 }
 #endif
 
-//@{
-/// A function implementation to be assigned to the appropriate callback.
 void tscTimerHandler(void *);
 void uiTimerHandler(void *);
 void mainRisingEdgeHandler(void *);
@@ -57,8 +51,7 @@ void dacTimerHandler(void *);
 void sdaadcConversionCompleteHandler(void *);
 void auxTimer1InterruptHandler(void *);
 void auxTimer2InterruptHandler(void *);
-//@}
-
+void auxTimer3InterruptHandler(void *);
 
 
 

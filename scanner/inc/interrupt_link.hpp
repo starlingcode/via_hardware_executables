@@ -12,24 +12,25 @@
 extern "C" {
 #endif
 
-void * modulePointer;
+extern void * modulePointer;
 
-void (*tscTimerCallback)(void*);
-void (*uiTimerCallback)(void*);
-void (*mainRisingEdgeCallback)(void*);
-void (*mainFallingEdgeCallback)(void*);
-void (*auxRisingEdgeCallback)(void*);
-void (*auxFallingEdgeCallback)(void*);
-void (*buttonPressedCallback)(void*);
-void (*buttonReleasedCallback)(void*);
-void (*adcConversionCompleteCallback)(void*);
-void (*dacHalfTransferCallback)(void*);
-void (*dacTransferCompleteCallback)(void*);
-void (*dacTimerCallback)(void*);
-void (*cv2HalfTransferCallback)(void*);
-void (*cv2TransferCompleteCallback)(void*);
-void (*cv3HalfTransferCallback)(void*);
-void (*cv3TransferCompleteCallback)(void*);
+extern void (*tscTimerCallback)(void*);
+extern void (*uiTimerCallback)(void*);
+extern void (*mainRisingEdgeCallback)(void*);
+extern void (*mainFallingEdgeCallback)(void*);
+extern void (*auxRisingEdgeCallback)(void*);
+extern void (*auxFallingEdgeCallback)(void*);
+extern void (*buttonPressedCallback)(void*);
+extern void (*buttonReleasedCallback)(void*);
+extern void (*adcConversionCompleteCallback)(void*);
+extern void (*dacHalfTransferCallback)(void*);
+extern void (*dacTransferCompleteCallback)(void*);
+extern void (*dacTimerCallback)(void*);
+extern void (*sdaadcConversionCompleteCallback)(void*);
+extern void (*auxTimer1InterruptCallback)(void*);
+extern void (*auxTimer2InterruptCallback)(void*);
+extern void (*auxTimer3InterruptCallback)(void*);
+
 
 #ifdef __cplusplus
 }
@@ -47,10 +48,11 @@ void adcConversionCompleteHandler(void*);
 void dacHalfTransferHandler(void *);
 void dacTransferCompleteHandler(void *);
 void dacTimerHandler(void *);
-void cv2HalfTransferHandler(void*);
-void cv2TransferCompleteHandler(void*);
-void cv3HalfTransferHandler(void*);
-void cv3TransferCompleteHandler(void*);
+void sdaadcConversionCompleteHandler(void *);
+void auxTimer1InterruptHandler(void *);
+void auxTimer2InterruptHandler(void *);
+void auxTimer3InterruptHandler(void *);
+
 
 
 #endif /* INTERRUPT_LINK_HPP_ */

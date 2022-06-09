@@ -1,0 +1,18 @@
+Project: scanner
+Converter: ST System Workbench for STM32 project converter
+Date: 20220609
+
+Option gnu.c.compiler.option.warnings.nowarn is no longer supported
+Unrecognized tool command 'g++' for tool id fr.ac6.managedbuild.tool.gnu.cross.cpp.compiler
+Option gnu.cpp.compiler.option.warnings.nowarn is no longer supported
+Unrecognized tool command 'g++' for tool id fr.ac6.managedbuild.tool.gnu.cross.cpp.linker
+Option fr.ac6.managedbuild.tool.gnu.cross.cpp.linker.noexceptions is no longer supported
+Option fr.ac6.managedbuild.tool.gnu.cross.cpp.linker.nortti is no longer supported
+Value type err, id: gnu.cpp.link.option.flags
+Unrecognized tool command 'as' for tool id fr.ac6.managedbuild.tool.gnu.cross.assembler
+Option gnu.c.compiler.option.warnings.nowarn is no longer supported
+Option gnu.cpp.compiler.option.warnings.nowarn is no longer supported
+Option fr.ac6.managedbuild.tool.gnu.cross.cpp.linker.noexceptions is no longer supported
+Option fr.ac6.managedbuild.tool.gnu.cross.cpp.linker.nortti is no longer supported
+Value type err, id: gnu.cpp.link.option.flags
+No map found for id: fr.ac6.managedbuild.tool.gnu.cross.exe.release.asm.gendebug
