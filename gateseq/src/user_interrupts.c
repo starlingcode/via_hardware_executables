@@ -1,5 +1,5 @@
 
-#include <via_f373_system.hpp>
+#include <via-f373-system.hpp>
 #include "tsl_user.h"
 #include "stm32f3xx_it.h"
 #include "interrupt_link.hpp"

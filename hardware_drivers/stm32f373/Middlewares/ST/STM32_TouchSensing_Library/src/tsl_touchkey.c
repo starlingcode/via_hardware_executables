@@ -26,7 +26,7 @@
   */
 
 /* Includes ------------------------------------------------------------------*/
-#include <touch_lib_link.hpp>
+#include <touch-lib-link.hpp>
 #include "tsl_touchkey.h"
 #include "tsl_globals.h"
 #include "tsl_user.h"

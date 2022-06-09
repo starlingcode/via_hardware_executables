@@ -34,7 +34,7 @@
 #include "stm32f3xx_hal.h"
 #include "stm32f3xx.h"
 #include "stm32f3xx_it.h"
-#include <via_f373_system.hpp>
+#include <via-f373-system.hpp>
 
 /* USER CODE BEGIN 0 */
 
